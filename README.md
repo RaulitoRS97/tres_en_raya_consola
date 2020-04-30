@@ -8,4 +8,4 @@ Aunque esta hecho en consola, la interfaz es muy intuitiva y vistosa, hace uso d
 Importante decir que la ejecucion del programa funcionara correctamente en consola 'cmd' o 'bash', pero en las consolas de los IDE's depende de como esten desarrolladas, por ejemplo en Eclipse 2019-12 no interpreta los codigos ANSI, ademas, a la hora de desarrollar, hay que tener cierto cuidado con la codificacion que le damos a nuestros '.java' debido a que puede reemplazar los caracteres ASCII extendido utilizados.
 
 # Conclusion
-Es un programa sencillo, y cuidado, espero que si lo prueban lo disfruten al igual que hecho yo al programarlo.
+Es un programa sencillo, espero que si lo prueban lo disfruten al igual que hecho yo al programarlo.
