@@ -1,6 +1,7 @@
 package tres_en_raya_consola;
 //Importamos los siguientes paquetes:
 import java.io.IOException;
+import java.util.Scanner;
 //Clase principal:
 public class UsoTresEnRaya {
 	//Codigos de escape ANSI que representan diferentes colores, destacar que cada codigo tiene delante el codigo de reinicio '\u0001B[0m':
@@ -14,6 +15,44 @@ public class UsoTresEnRaya {
 		//Imprimimos la portada llamando al siguiente metodo:
 		imprimirPortada();
 		borrarConsola();
+		Scanner in = new Scanner(System.in);	//Creamos nuestro objeto scanner para poder leer por teclado.
+		int opc;	//Variable que contendra la opcion elegida por el usuario referente al menu.
+		//Bucle 'do While' que se mantendra iterando hasta que el usuario elija la opcion '0'.
+		do {
+			opc=menu(in);	//Llamamos al menu para recoger la opcion elegida por el usuario.
+			borrarConsola();
+		}while(opc!=0);
+	}
+	//Metodo estatico que mostrara un menu para recoger y devolver la opcion elegida por el usuario:
+	public static int menu(Scanner in) {
+		int opc = -1;		//Variable opcion que guardara el valor de la opcion elegida.
+		String aux="";		//String auxiliar para leer los datos con el y luego castear a entero.
+		System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
+		System.out.println("│ "+BLANCO_BRILLANTE+"Introduzca una de las siguientes opciones:               "+NEGRO_BRILLANTE+"│ ");
+		System.out.println("├──────────────────────────────────────────────────────────┤");
+		//Con un bucle 'do While' controlamos la opcion elegida por el usuario:
+		do {
+			System.out.println("│ "+BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"1"+BLANCO_BRILLANTE+") Jugador Vs Jugador.                                  "+NEGRO_BRILLANTE+"│");
+			System.out.println("│ "+BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"2"+BLANCO_BRILLANTE+") Jugador Vs IA.                                       "+NEGRO_BRILLANTE+"│");
+			System.out.println("│ "+BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"3"+BLANCO_BRILLANTE+") IA Vs Jugador.                                       "+NEGRO_BRILLANTE+"│");
+			System.out.println("│ "+BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"4"+BLANCO_BRILLANTE+") IA Vs IA.                                            "+NEGRO_BRILLANTE+"│");
+			System.out.println("│     "+BLANCO_BRILLANTE+"("+ROJO_BRILLANTE+"0"+BLANCO_BRILLANTE+") Salir del juego.                                 "+NEGRO_BRILLANTE+"│");
+			System.out.print  ("├──────────────────────────────────────────────────────────┤\n│ "+BLANCO_BRILLANTE);
+			aux=in.nextLine();	//La primera vez leemos en 'aux'.
+			try {	//Intentamos castear a 'aux' a entero, y si no lo conseguimos controlamos la excepcion:
+				opc=Integer.parseInt(aux.trim());
+				if(opc<0||opc>4) {	//Si 'opc' no esta en el valor indicado mostramos mensaje de error:
+					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+					System.out.println("│ "+ROJO_SUBRAYADO_BRILLANTE+"Error, reintroduzca una opcion valida:"+NEGRO_BRILLANTE+"                   │");
+					System.out.println("├──────────────────────────────────────────────────────────┤");
+				}
+			}catch(NumberFormatException n) {	//Mostramos mensaje de error cuando se captura la excepcion:
+				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+				System.out.println("│ "+ROJO_SUBRAYADO_BRILLANTE+"Error, reintroduzca una opcion valida:"+NEGRO_BRILLANTE+"                   │");
+				System.out.println("├──────────────────────────────────────────────────────────┤");
+			}
+		}while(opc<0||opc>4);
+		return opc;	//Devolvemos el valor de 'opc'.
 	}
 	//Metodo estatico encargado de imprimir una portada al iniciar el programa con una animacion:
 	static void imprimirPortada() {
