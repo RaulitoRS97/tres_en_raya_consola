@@ -1,4 +1,3 @@
-//Importamos los siguientes paquetes:
 package tres_en_raya_consola;
 //Clase que contiene toda la logica del juego, como las comprobaciones, los pasos a realizar por la IA ...:
 public class LogicaTresEnRaya {
@@ -21,12 +20,12 @@ public class LogicaTresEnRaya {
 	//[JUGADOR 1 = 1, JUGADOR 2 = 2]
 	public void setMueveJugador(int posicion, int jugador) {
 		//Antes de tapar esa casilla con su ficha, se comprueba que este vacia:
-		if(tablero[posicion] == 0) {tablero[posicion] = jugador;}
+		if(tablero[posicion-1] == 0) {tablero[posicion-1] = jugador;}
 	}
 	//Metodo get que devuelve un booleano en funcion de si se puede realizar el movimiento o no en la posicion pasada por parametro:
 	//[TRUE = MOVIMIENTO VALIDO, FALSE = MOVIMIENTO INVALIDO]
 	public boolean getMovimientoValido(int posicion) {
-		return tablero[posicion] == 0;
+		return tablero[posicion-1] == 0;
 	}
 	//Metodo set para reiniciar el tablero para otra nueva partida:
 	public void setIniciar() {
@@ -47,7 +46,7 @@ public class LogicaTresEnRaya {
 		int i;					//Contador para recorrer el tablero.
 		int contFichas;			//Contador de fichas encontradas del jugador pasado.
 		boolean gana = false;	//Bandera booleana para saber si ha ganado o no el jugador.
-		//Bucle para buscar combinaci�n ganadora de manera horizontal por cada fila:
+		//Bucle para buscar combinación ganadora de manera horizontal por cada fila:
 		int lim; 	//Variable para emular las limitaciones verticales del tablero 3x3 en nuestro array lineal de 9x1, y asi representar las lineas.
 		i = 0; lim = 3; contFichas = 0;
 		while(i < lim && !gana) {
@@ -61,7 +60,7 @@ public class LogicaTresEnRaya {
 				contFichas = 0;
 			}
 		}
-		//Bucle para buscar combinaci�n ganadora de manera vertical por cada columna:
+		//Bucle para buscar combinación ganadora de manera vertical por cada columna:
 		i = 0; contFichas = 0;
 		while(i < 9 && !gana) {
 			if(tablero[i] == jugador) {
@@ -74,7 +73,7 @@ public class LogicaTresEnRaya {
 			}
 			else {i += 3;}
 		}
-		//Bucle para buscar combinaci�n ganadora en las diagonales:
+		//Bucle para buscar combinación ganadora en las diagonales:
 		i = 0; contFichas = 0;
 		boolean diagonalUlt = false;
 		while(i != -1 && !gana) {
@@ -291,6 +290,118 @@ public class LogicaTresEnRaya {
 							hecho = true;
 						}
 					}
+				}
+			}
+		}
+	}
+	//Metodo get para dibujar el tablero de las 3 en raya, con la informacion actual:
+	public void getDibujaTablero() {
+		//Codigos de escape ANSI que representan diferentes colores, destacar que cada codigo tiene delante el codigo de reinicio '\u0001B[0m':
+		final String ROJO_BRILLANTE="\u001B[0m\033[0;91m", VERDE_BRILLANTE="\u001B[0m\033[1;32m", CYAN_BRILLANTE="\u001B[0m\033[0;96m", BLANCO="\u001B[0m\033[37m", NEGRO_BRILLANTE="\u001B[0m\033[1;30m", AMARILLO_BRILLANTE="\u001B[0m\033[0;93m";
+		//Variables contadores:
+		int i, j;
+		//Variables que contendran las posiciones de las fichas del jugador que gana la partida:
+		int pos1 = 0, pos2 = 0, pos3 = 0;
+		//Definimos diferentes Arrays de String para dar forma a las figuras del juego:
+		String[] jugadorXGanador = {VERDE_BRILLANTE+"  ██  ██  ",VERDE_BRILLANTE+"    ██    ",VERDE_BRILLANTE+"  ██  ██  "};
+		String[] jugadorOGanador = {VERDE_BRILLANTE+"  ██████  ",VERDE_BRILLANTE+"  ██  ██  ",VERDE_BRILLANTE+"  ██████  "};
+		String[] jugadorX = {CYAN_BRILLANTE+"  ██  ██  ",CYAN_BRILLANTE+"    ██    ",CYAN_BRILLANTE+"  ██  ██  "};
+		String[] jugadorO = {ROJO_BRILLANTE+"  ██████  ",ROJO_BRILLANTE+"  ██  ██  ",ROJO_BRILLANTE+"  ██████  "};
+		String[] vacio = {"          ","          ","          "};
+		String aux = "";
+		//Almacenamos las posiciones de las fichas del jugador que gana la partida para poder imprimir la combinacion ganadora:
+		if(getGanaJugador(1)) {
+			if(tablero[0] == 1 && tablero[1] == 1 && tablero[2] == 1) {pos1 = 0; pos2 = 1; pos3 = 2;}
+			else if(tablero[3] == 1 && tablero[4] == 1 && tablero[5] == 1) {pos1 = 3; pos2 = 4; pos3 = 5;}
+			else if(tablero[6] == 1 && tablero[7] == 1 && tablero[8] == 1) {pos1 = 6; pos2 = 7; pos3 = 8;}
+			else if(tablero[0] == 1 && tablero[3] == 1 && tablero[6] == 1) {pos1 = 0; pos2 = 3; pos3 = 6;}
+			else if(tablero[1] == 1 && tablero[4] == 1 && tablero[7] == 1) {pos1 = 1; pos2 = 4; pos3 = 7;}
+			else if(tablero[2] == 1 && tablero[5] == 1 && tablero[8] == 1) {pos1 = 2; pos2 = 5; pos3 = 8;}
+			else if(tablero[0] == 1 && tablero[4] == 1 && tablero[8] == 1) {pos1 = 0; pos2 = 4; pos3 = 8;}
+			else if(tablero[2] == 1 && tablero[4] == 1 && tablero[6] == 1) {pos1 = 2; pos2 = 4; pos3 = 6;}
+		}
+		else if(getGanaJugador(2)) {
+			if(tablero[0] == 2 && tablero[1] == 2 && tablero[2] == 2) {pos1 = 0; pos2 = 1; pos3 = 2;}
+			else if(tablero[3] == 2 && tablero[4] == 2 && tablero[5] == 2) {pos1 = 3; pos2 = 4; pos3 = 5;}
+			else if(tablero[6] == 2 && tablero[7] == 2 && tablero[8] == 2) {pos1 = 6; pos2 = 7; pos3 = 8;}
+			else if(tablero[0] == 2 && tablero[3] == 2 && tablero[6] == 2) {pos1 = 0; pos2 = 3; pos3 = 6;}
+			else if(tablero[1] == 2 && tablero[4] == 2 && tablero[7] == 2) {pos1 = 1; pos2 = 4; pos3 = 7;}
+			else if(tablero[2] == 2 && tablero[5] == 2 && tablero[8] == 2) {pos1 = 2; pos2 = 5; pos3 = 8;}
+			else if(tablero[0] == 2 && tablero[4] == 2 && tablero[8] == 2) {pos1 = 0; pos2 = 4; pos3 = 8;}
+			else if(tablero[2] == 2 && tablero[4] == 2 && tablero[6] == 2) {pos1 = 2; pos2 = 4; pos3 = 6;}
+		}
+		//Mostramos el tablero por pantalla:
+		System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
+		System.out.println("│                          "+AMARILLO_BRILLANTE+"TABLERO                         "+NEGRO_BRILLANTE+"│");
+		System.out.println("│         "+BLANCO+"┌────────────┬────────────┬────────────┐         "+NEGRO_BRILLANTE+"│");
+		System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
+		//Bucle for encargado de imprimir parte del tablero, segun la informacion contenida actual:
+		for(i = 0, j = 0 ; i < 9 ; i++) {
+			if(i == 0 || i == 3 || i == 6) {
+				aux += BLANCO+"│ ";			//Impresion de los separadores laterales izquierdos de las casillas.
+			}
+			if(tablero[i] == 0) {
+				aux += vacio[j];			//Si la casilla esta vacia, se imprime la figura vacia.
+				if(i == 2 || i == 5 || i == 8) {
+					aux += BLANCO+" │";		//Impresion de los separadores laterales derechos de las casillas.
+				}
+				else {
+					aux += BLANCO+" │ ";	//Impresion de los separadores centrales de las casillas.
+				}
+			}
+			else if(tablero[i] == 1) {		//Si la casilla contiene una X, se imprime su figura, dependiendo de si ha ganado o no se utiliza una u otra.
+				if(getGanaJugador(1) && (pos1 == i || pos2 == i || pos3 == i)) {
+					aux += jugadorXGanador[j];
+				}
+				else{
+					aux += jugadorX[j];
+				}
+				if(i == 2 || i == 5 || i == 8) {
+					aux += BLANCO+" │";		//Impresion de los separadores laterales derechos de las casillas.
+				}
+				else {
+					aux += BLANCO+" │ ";	//Impresion de los separadores centrales de las casillas.
+				}
+			}
+			else if(tablero[i] == 2){		//Si la casilla contiene una O, se imprime su figura, dependiendo de si ha ganado o no se utiliza una u otra.
+				if(getGanaJugador(2) && (pos1 == i || pos2 == i || pos3 == i)) {
+					aux += jugadorOGanador[j];
+				}
+				else {
+					aux += jugadorO[j];
+				}
+				if(i == 2 || i == 5 || i == 8) {
+					aux += BLANCO+" │";		//Impresion de los separadores laterales derechos de las casillas.
+				}
+				else {
+					aux += BLANCO+" │ ";	//Impresion de los separadores centrales de las casillas.
+				}
+			}
+			if(i == 2 || i == 5 || i == 8) {	//Cuando se tenga esa linea concatenada la pasamos a imprimir:
+				System.out.println(NEGRO_BRILLANTE+"│         " + aux + "         "+NEGRO_BRILLANTE+"│");
+				//Reiniciamos valores para la siguiente linea, siempre que no sea la ultima linea antes de la siguiente casilla:
+				if(j < 2) {
+					if(i == 2) {i = -1;}
+					else if(i == 5) {i = 2;}
+					else {i = 5;}
+					j++;
+					aux = "";
+				}
+				//Si es la ultima linea antes de la siguiente casilla, se muestra en pequeño los numeros que hacen referencia a esa casilla:
+				else {
+					System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"│          " +AMARILLO_BRILLANTE+(i-1) + " "+BLANCO+"│          " +AMARILLO_BRILLANTE+ (i) + " "+BLANCO+"│          " +AMARILLO_BRILLANTE+(i+1) + " "+BLANCO+"│         "+NEGRO_BRILLANTE+"│");
+					//Si no es la ultima linea divisoria se imprime la siguiente estructura:
+					if(i < 8) {
+						System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"├────────────┼────────────┼────────────┤         "+NEGRO_BRILLANTE+"│");
+						System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
+					}
+					//Si es la ultima linea divisoria se imprime la siguiente estructura:
+					else {
+						System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
+					}
+					//Reiniciamos valores:
+					j = 0;
+					aux = "";
 				}
 			}
 		}
