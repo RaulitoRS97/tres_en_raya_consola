@@ -398,6 +398,7 @@ public class LogicaTresEnRaya {
 					//Si es la ultima linea divisoria se imprime la siguiente estructura:
 					else {
 						System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
+						System.out.println("│                                                          │");
 					}
 					//Reiniciamos valores:
 					j = 0;
