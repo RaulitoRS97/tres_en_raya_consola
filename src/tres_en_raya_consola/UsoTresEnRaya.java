@@ -21,9 +21,13 @@ public class UsoTresEnRaya {
 		do {
 			opc=menu(in);	//Llamamos al menu para recoger la opcion elegida por el usuario.
 			borrarConsola();
-			//La opcion 1 del menu es para que jueguen Jugador1 vs Jugador2:	(Empiezan las X)
+			//La opcion 1 del menu es para que jueguen JugadorX vs JugadorO:	(Empiezan las X)
 			if(opc == 1) {
 				opcP1vsP2(in);
+			}
+			//La opcion 2 del menu es para que jueguen JugadorX vs IAO:		(Empiezan las X)
+			else if(opc == 2) {
+				opcP1vsIA2(in);
 			}
 			//Siempre que no sea la opcion '0', se mostrara el siguiente mensaje y se borrara la consola:
 			if(opc!=0) {
@@ -34,13 +38,62 @@ public class UsoTresEnRaya {
 			}
 		}while(opc!=0);
 	}
+	//Metodo estatico que ejecutara la opcion numero 2 del menu, es decir Jugador X vs IA O:
+	public static void opcP1vsIA2(Scanner in) {
+		int pos = -1;			//Variable que contendra la posicion elegida por el jugador.
+		borrarConsola();
+		miJuego.getDibujaTablero();
+		//Mostramos un mensaje para que el jugador 1 introduzca la posicion en la que desea colocar su ficha:
+		do {
+			System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+			System.out.println("│ "+BLANCO_BRILLANTE+"Jugador X introduzca su posición por favor:              "+NEGRO_BRILLANTE+"│");
+			pos = recogerPosicion(in);
+			miJuego.setMueveJugador(pos, 1);
+			borrarConsola();
+			miJuego.getDibujaTablero();
+			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador X y si es asi mostramos un mensaje:
+			if(miJuego.getGanaJugador(1)) {
+				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador X, usted ganó la partida.        "+NEGRO_BRILLANTE+"│");
+				System.out.println("├──────────────────────────────────────────────────────────┤");
+			}
+			//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
+			else if(!miJuego.getQuedanMovimientos()) {
+				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...   "+NEGRO_BRILLANTE+"│");
+				System.out.println("├──────────────────────────────────────────────────────────┤");
+			}
+			//Sino, pasara a jugar la IA de las O:
+			else {
+				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+				System.out.println("│ "+BLANCO_BRILLANTE+"IA O moverá cuando pulse un enter:                       "+NEGRO_BRILLANTE+"│");
+				System.out.println("└──────────────────────────────────────────────────────────┘");
+				in.nextLine();
+				miJuego.setMueveOrdenador(2, 1);
+				borrarConsola();
+				miJuego.getDibujaTablero();
+				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA O y si es asi mostramos un mensaje:
+				if(miJuego.getGanaJugador(2)) {
+					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+					System.out.println("│ "+BLANCO_BRILLANTE+"Has sido derrotado, la IA O te ha humillado..            "+NEGRO_BRILLANTE+"│");
+					System.out.println("├──────────────────────────────────────────────────────────┤");
+				}
+				//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
+				else if(!miJuego.getQuedanMovimientos()) {
+					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+					System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...   "+NEGRO_BRILLANTE+"│");
+					System.out.println("├──────────────────────────────────────────────────────────┤");
+				}
+			}
+		}while(!(miJuego.getGanaJugador(1)) && !(miJuego.getGanaJugador(2)) && miJuego.getQuedanMovimientos());
+		miJuego.setIniciar();
+	}
 	//Metodo estatico que ejecutara la opcion numero 1 del menu, es decir Jugador X vs Jugador O:
 	public static void opcP1vsP2(Scanner in) {
 		int pos = -1;			//Variable que contendra la posicion elegida por el jugador.
-		//Utilizamos el metodo get del objeto "mijuego" para dibujar el tablero:
 		borrarConsola();
 		miJuego.getDibujaTablero();
-		//Mostramos un mensaje para que el jugador 1 introduzca la posicion en la que desea colocar su ficha
+		//Mostramos un mensaje para que el jugador 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
 			System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
 			System.out.println("│ "+BLANCO_BRILLANTE+"Jugador X introduzca su posición por favor:              "+NEGRO_BRILLANTE+"│");
