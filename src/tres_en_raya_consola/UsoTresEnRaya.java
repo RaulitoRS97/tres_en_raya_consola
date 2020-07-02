@@ -33,6 +33,10 @@ public class UsoTresEnRaya {
 			else if(opc == 3) {
 				opcIA1vsP2(in);
 			}
+			//La opcion 4 del menu es para que jueguen IAX vs IAO:		(Empiezan las X)
+			else if(opc == 4) {
+				opcIA1vsIA2(in);
+			}
 			//Siempre que no sea la opcion '0', se mostrara el siguiente mensaje y se borrara la consola:
 			if(opc!=0) {
 				System.out.println(NEGRO_BRILLANTE+"│ "+BLANCO_BRILLANTE+"Pulse enter para continuar ...                           "+NEGRO_BRILLANTE+"│");
@@ -41,6 +45,56 @@ public class UsoTresEnRaya {
 				borrarConsola();
 			}
 		}while(opc!=0);
+	}
+	//Metodo estatico que ejecutara la opcion numero 4 del menu, es decir IA X vs IA O:
+	public static void opcIA1vsIA2(Scanner in) {
+		borrarConsola();
+		miJuego.getDibujaTablero();
+		//Mostramos un mensaje para que la IA 1 introduzca la posicion en la que desea colocar su ficha:
+		do {
+			System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+			System.out.println("│ "+BLANCO_BRILLANTE+"IA X moverá cuando pulse un enter:                       "+NEGRO_BRILLANTE+"│");
+			System.out.println("└──────────────────────────────────────────────────────────┘");
+			in.nextLine();
+			miJuego.setMueveOrdenador(1, 2);
+			borrarConsola();
+			miJuego.getDibujaTablero();
+			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA X y si es asi mostramos un mensaje:
+			if(miJuego.getGanaJugador(1)) {
+				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+				System.out.println("│ "+BLANCO_BRILLANTE+"La IA X ha ganado la partida.                           "+NEGRO_BRILLANTE+"│");
+				System.out.println("├──────────────────────────────────────────────────────────┤");
+			}
+			//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
+			else if(!miJuego.getQuedanMovimientos()) {
+				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Ni la IA PUEDE CONTRA LA IA.   "+NEGRO_BRILLANTE+"│");
+				System.out.println("├──────────────────────────────────────────────────────────┤");
+			}
+			//Sino, pasara a jugar la IA de las O:
+			else {
+				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+				System.out.println("│ "+BLANCO_BRILLANTE+"IA O moverá cuando pulse un enter:                       "+NEGRO_BRILLANTE+"│");
+				System.out.println("└──────────────────────────────────────────────────────────┘");
+				in.nextLine();
+				miJuego.setMueveOrdenador(2, 1);
+				borrarConsola();
+				miJuego.getDibujaTablero();
+				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA O y si es asi mostramos un mensaje:
+				if(miJuego.getGanaJugador(2)) {
+					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+					System.out.println("│ "+BLANCO_BRILLANTE+"La IA O ha ganado la partida.                           "+NEGRO_BRILLANTE+"│");
+					System.out.println("├──────────────────────────────────────────────────────────┤");
+				}
+				//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
+				else if(!miJuego.getQuedanMovimientos()) {
+					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
+					System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Ni la IA PUEDE CONTRA LA IA.   "+NEGRO_BRILLANTE+"│");
+					System.out.println("├──────────────────────────────────────────────────────────┤");
+				}
+			}
+		}while(!(miJuego.getGanaJugador(1)) && !(miJuego.getGanaJugador(2)) && miJuego.getQuedanMovimientos());
+		miJuego.setIniciar();
 	}
 	//Metodo estatico que ejecutara la opcion numero 3 del menu, es decir IA X vs Jugador O:
 	public static void opcIA1vsP2(Scanner in) {
