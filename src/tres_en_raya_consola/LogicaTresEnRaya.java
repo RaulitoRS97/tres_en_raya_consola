@@ -134,6 +134,38 @@ public class LogicaTresEnRaya {
 		else if(tablero[2] == 0 && tablero[4] == valorCasilla && tablero[6] == valorCasilla) {tablero[2] = jugador; hecho = true;}
 		return hecho;
 	}
+	//Metodo privado que segun los parametros pasados, hace la defensa especial:
+	//Si le pasas valor casilla '1' el jugador '2' intentara hacer la defensa final para no perder:
+	//Si le pasas valor casilla '2' el jugador '1' intentara hacer la defensa final para no perder:
+	//Devuelve un booleano para indicar si se pudo realizar un movimiento o no:
+	private boolean realizaMovimientoDefensaEspecial(int valorCasilla) {
+		int jugador;	//Variable que hace referencia al jugador, su valor se obtendra en funcion de el valor casilla pasado.
+		if(valorCasilla == 1) {jugador = 2;}
+		else {jugador = 1;}
+		boolean hecho = false;	//Variable booleana para comprobar si se ha realizado el movimiento o no.
+		//Se comprueba si hay una esquina disponible que creara dos caminos en caso de ser rellenada, si la hay se tapa:
+		if(tablero[0] == 0 && tablero[1] == valorCasilla && tablero[3] == valorCasilla && tablero[2] == 0 && tablero[6] == 0) {tablero[0] = jugador; hecho = true;}
+		else if(tablero[0] == 0 && tablero[1] == valorCasilla && tablero[6] == valorCasilla && tablero[2] == 0 && tablero[3] == 0) {tablero[0] = jugador; hecho = true;}
+		else if(tablero[0] == 0 && tablero[2] == valorCasilla && tablero[3] == valorCasilla && tablero[1] == 0 && tablero[6] == 0) {tablero[0] = jugador; hecho = true;}
+		else if(tablero[0] == 0 && tablero[2] == valorCasilla && tablero[6] == valorCasilla && tablero[1] == 0 && tablero[3] == 0
+				&& !(tablero[8] == 0 && tablero[2] == valorCasilla && tablero[6] == valorCasilla && tablero[5] == 0 && tablero[7] == 0)) {tablero[0] = jugador; hecho = true;}
+		else if(tablero[2] == 0 && tablero[1] == valorCasilla && tablero[5] == valorCasilla && tablero[0] == 0 && tablero[8] == 0) {tablero[2] = jugador; hecho = true;}
+		else if(tablero[2] == 0 && tablero[0] == valorCasilla && tablero[5] == valorCasilla && tablero[1] == 0 && tablero[8] == 0) {tablero[2] = jugador; hecho = true;}
+		else if(tablero[2] == 0 && tablero[1] == valorCasilla && tablero[8] == valorCasilla && tablero[0] == 0 && tablero[5] == 0) {tablero[2] = jugador; hecho = true;}
+		else if(tablero[2] == 0 && tablero[0] == valorCasilla && tablero[8] == valorCasilla && tablero[1] == 0 && tablero[5] == 0
+				&& !(tablero[6] == 0 && tablero[0] == valorCasilla && tablero[8] == valorCasilla && tablero[3] == 0 && tablero[7] == 0)) {tablero[2] = jugador; hecho = true;}
+		else if(tablero[6] == 0 && tablero[3] == valorCasilla && tablero[7] == valorCasilla && tablero[0] == 0 && tablero[8] == 0) {tablero[6] = jugador; hecho = true;}
+		else if(tablero[6] == 0 && tablero[3] == valorCasilla && tablero[8] == valorCasilla && tablero[0] == 0 && tablero[7] == 0) {tablero[6] = jugador; hecho = true;}
+		else if(tablero[6] == 0 && tablero[0] == valorCasilla && tablero[7] == valorCasilla && tablero[3] == 0 && tablero[8] == 0) {tablero[6] = jugador; hecho = true;}
+		else if(tablero[6] == 0 && tablero[0] == valorCasilla && tablero[8] == valorCasilla && tablero[3] == 0 && tablero[7] == 0
+				&& !(tablero[2] == 0 && tablero[0] == valorCasilla && tablero[8] == valorCasilla && tablero[1] == 0 && tablero[5] == 0)) {tablero[6] = jugador; hecho = true;}
+		else if(tablero[8] == 0 && tablero[7] == valorCasilla && tablero[5] == valorCasilla && tablero[2] == 0 && tablero[6] == 0) {tablero[8] = jugador; hecho = true;}
+		else if(tablero[8] == 0 && tablero[2] == valorCasilla && tablero[7] == valorCasilla && tablero[5] == 0 && tablero[6] == 0) {tablero[8] = jugador; hecho = true;}
+		else if(tablero[8] == 0 && tablero[5] == valorCasilla && tablero[6] == valorCasilla && tablero[2] == 0 && tablero[7] == 0) {tablero[8] = jugador; hecho = true;}
+		else if(tablero[8] == 0 && tablero[2] == valorCasilla && tablero[6] == valorCasilla && tablero[5] == 0 && tablero[7] == 0
+				&& !(tablero[0] == 0 && tablero[2] == valorCasilla && tablero[6] == valorCasilla && tablero[1] == 0 && tablero[3] == 0)) {tablero[8] = jugador; hecho = true;}
+		return hecho;
+	}
 	//Metodo set que realiza los pasos de la IA especificada en los parametros:
 	public void setMueveOrdenador(int jugador, int jugadorContrario) {
 		boolean hecho = false;	//Variable booleana para comprobar si se ha realizado el movimiento o no.
@@ -158,34 +190,51 @@ public class LogicaTresEnRaya {
 				for(int i = 0 ; i < 9 && primeroGenerico && numPasoGenerico <= 0 ; i++) {
 					if(tablero[i] != 0) {primeroGenerico = false;}
 				}
-				//Si no es el primero, hace las siguientes estrategias, dependiendo de si es el primer movimiento o no:
+				//Si NO es o NO ha sido el primero, hace las siguientes estrategias, dependiendo del numero de paso en el que este su logica:
 				if(!primeroGenerico) {
-					hecho = true;
+					hecho = true;	//Lo hacemos true ya que se va a realizar si o si un movimiento.
+					//Comprobamos estar en el Primer paso, y si el oponente ha puesto su primera pieza en una esquina, se pondra una en el centro:
 					if((tablero[4] == 0 && numPasoGenerico == 0)&&(tablero[1] == 0 && tablero[3] == 0 && tablero[5] == 0 &&tablero[7] == 0)) {
 						tablero[4] = jugador;
 						numPasoGenerico ++;
 					}
+					//Comprobamos estar en el Primer paso, y si el oponente ha puesto su primera pieza en el centro, se pondra una en una esquina:
 					else if(tablero[4] == jugadorContrario && numPasoGenerico == 0) {
-						if(tablero[0] == 0) {tablero[0] = jugador;}
-						else if(tablero[2] == 0) {tablero[2] = jugador;}
-						else if(tablero[6] == 0) {tablero[6] = jugador;}
-						else if(tablero[8] == 0) {tablero[8] = jugador;}
+						//Mediante este bucle controlamos que el primer movimiento se produzca en una de las esquinas del tablero de manera aleatoria:
+						do {
+							pos = (int)(9*Math.random());
+						}while(pos != 6 && pos != 0 && pos != 2 && pos != 8);
+						tablero[pos] = jugador;
 						numPasoGenerico += 2;
 					}
+					//Comprobamos estar en el Primer paso, y si el oponente ha puesto su primera pieza en un borde o arista, se pondra una en el centro:
 					else if((tablero[4] == 0 && numPasoGenerico == 0)&&(tablero[0] == 0 && tablero[2] == 0 && tablero[6] == 0 && tablero[8] == 0)) {
 						tablero[4] = jugador;
-						numPasoGenerico += 3;
+						numPasoGenerico += 2;
 					}
+					//Si el paso es Uno, es decir el oponente empezo en una esquina y le pusimos pieza en el centro, pasaremos a poner en un borde con posibilidad de ganar,
+					//y si no quedan pues buscaremos una esquina con posibilidad de ganar, y sino, pues simplemente bordes o esquinas:
 					else if(numPasoGenerico == 1) {
-						if(tablero[1] == 0) {tablero[1] = jugador;}
-						else if(tablero[3] == 0) {tablero[3] = jugador;}
-						else if(tablero[5] == 0) {tablero[5] = jugador;}
-						else if(tablero[7] == 0) {tablero[7] = jugador;}
-						else if(tablero[0] == 0) {tablero[0] = jugador;}
-						else if(tablero[2] == 0) {tablero[2] = jugador;}
-						else if(tablero[6] == 0) {tablero[6] = jugador;}
-						else if(tablero[8] == 0) {tablero[8] = jugador;}
+						if(!realizaMovimientoDefensaEspecial(jugadorContrario)) {
+							if(tablero[1] == 0 && tablero[7] == 0) {tablero[1] = jugador;}
+							else if(tablero[3] == 0 && tablero[5] == 0) {tablero[3] = jugador;}
+							else if(tablero[5] == 0 && tablero[3] == 0) {tablero[5] = jugador;}
+							else if(tablero[7] == 0 && tablero[1] == 0) {tablero[7] = jugador;}
+							else if(tablero[0] == 0 && tablero[8] == 0) {tablero[0] = jugador;}
+							else if(tablero[2] == 0 && tablero[6] == 0) {tablero[2] = jugador;}
+							else if(tablero[6] == 0 && tablero[2] == 0) {tablero[6] = jugador;}
+							else if(tablero[8] == 0 && tablero[0] == 0) {tablero[8] = jugador;}
+							else if(tablero[0] == 0) {tablero[0] = jugador;}
+							else if(tablero[2] == 0) {tablero[2] = jugador;}
+							else if(tablero[6] == 0) {tablero[6] = jugador;}
+							else if(tablero[8] == 0) {tablero[8] = jugador;}
+							else if(tablero[1] == 0) {tablero[1] = jugador;}
+							else if(tablero[3] == 0) {tablero[3] = jugador;}
+							else if(tablero[5] == 0) {tablero[5] = jugador;}
+							else if(tablero[7] == 0) {tablero[7] = jugador;}
+						}
 					}
+					//Si el paso es Dos, es decir el oponente empezo en el centro o en una arista, y nosotros le pusimos en una esquina, pasaremos a poner en una esquina, o a un borde:
 					else if(numPasoGenerico == 2) {
 						if(tablero[0] == 0) {tablero[0] = jugador;}
 						else if(tablero[2] == 0) {tablero[2] = jugador;}
@@ -196,19 +245,10 @@ public class LogicaTresEnRaya {
 						else if(tablero[5] == 0) {tablero[5] = jugador;}
 						else if(tablero[7] == 0) {tablero[7] = jugador;}
 					}
-					else if(numPasoGenerico == 3) {
-						if(tablero[0] == 0) {tablero[0] = jugador;}
-						else if(tablero[2] == 0) {tablero[2] = jugador;}
-						else if(tablero[6] == 0) {tablero[6] = jugador;}
-						else if(tablero[8] == 0) {tablero[8] = jugador;}
-						else if(tablero[1] == 0) {tablero[1] = jugador;}
-						else if(tablero[3] == 0) {tablero[3] = jugador;}
-						else if(tablero[5] == 0) {tablero[5] = jugador;}
-						else if(tablero[7] == 0) {tablero[7] = jugador;}
-					}
 				}
-				//Si es el primero turno hace las siguientes estrategias:
+				//Si es el que empieza o empezo primero, hara las siguientes estrategias en funcion del numero de paso en el que este:
 				else {
+					//Si es el primer movimiento, colocamos en una esquina:
 					if(numPasoGenerico == 0) {
 						//Mediante este bucle controlamos que el primer movimiento se produzca en una de las esquinas del tablero de manera aleatoria:
 						do {
@@ -218,9 +258,12 @@ public class LogicaTresEnRaya {
 						hecho = true;
 						numPasoGenerico++;
 					}
+					//Si es el paso Uno, y el jugador contrario ha colocado en alguna arista entramos:
 					else if(numPasoGenerico == 1 && (tablero[1] == jugadorContrario || tablero[3] == jugadorContrario || tablero[5] == jugadorContrario || tablero[7] == jugadorContrario)){
 						numPasoGenerico += 0.1;
 						hecho = true;
+						//Segun en la arista en la que haya colocado, y la esquina que nos otros hayamos colocado, se busca una esquina que sea contigua,
+						//y que no tenga una arista del jugador contrario entre las dos esquinas:
 						if(tablero[1] == jugadorContrario) {
 							if(tablero[0] == jugador) {tablero[6] = jugador;}
 							else if(tablero[2] == jugador) {tablero[8] = jugador;}
@@ -246,11 +289,14 @@ public class LogicaTresEnRaya {
 							else if(tablero[8] == jugador) {tablero[2] = jugador;}
 						}
 					}
+					//Si es el paso Uno.Uno, se coloca en el centro:
 					else if(numPasoGenerico == 1.1 && tablero[4] == 0) {
 						tablero[4] = jugador;	
 						hecho = true;
 					}
+					//Si el paso Uno y todavia no se ha realizado nada, aumentamos para pasar al paso Dos:
 					if(numPasoGenerico == 1 && !hecho) {numPasoGenerico++;}
+					//Si es el paso Dos, y el centro esta vacio, es decir el jugador ha movido a esquinas, nosotros colocamos en una esquina:
 					if(numPasoGenerico == 2 && tablero[4] == 0 && !hecho) {
 						do {
 							pos = (int)(9*Math.random());
@@ -259,6 +305,7 @@ public class LogicaTresEnRaya {
 						hecho = true;
 						numPasoGenerico += 0.1;
 					}
+					//Si es el paso Dos.Uno, se coloca en la ultima esquina libre:
 					else if(numPasoGenerico == 2.1 && !hecho) {
 						if(tablero[0] == 0) {tablero[0] = jugador;}
 						else if(tablero[2] == 0) {tablero[2] = jugador;}
@@ -266,23 +313,18 @@ public class LogicaTresEnRaya {
 						else if(tablero[8] == 0) {tablero[8] = jugador;}
 						hecho = true;
 					}
+					//Si es el paso Dos y todavia no se ha realizado nada, aumentamos para pasar al paso Tres:
 					if(numPasoGenerico == 2 && !hecho) {numPasoGenerico++;}
+					//Si es el paso Tres, y el centro esta ocupado, pasamos a mover a la esquina diagonal, segun la esquina que se haya seleccionado:
 					if(numPasoGenerico == 3 && tablero[4] == jugadorContrario && !hecho) {
 						if(tablero[0] == jugador) {tablero[8] = jugador;}
 						else if(tablero[2] == jugador) {tablero[6] = jugador;}
 						else if(tablero[6] == jugador) {tablero[2] = jugador;}
 						else if(tablero[8] == jugador) {tablero[0] = jugador;}
-						numPasoGenerico += 0.1;
 						hecho = true;
 					}
-					else if(numPasoGenerico == 3.1 && !hecho) {
-						do {
-							pos = (int)(9*Math.random());
-						}while(!(getMovimientoValido(pos)));
-						tablero[pos] = jugador;
-					}
 				}
-				//Casos sin control:
+				//Casos sin control o por finalizar:
 				if(!hecho) {
 					for(int i = 0 ; i < 9 && hecho == false ; i++) {
 						if(tablero[i] == 0) {
@@ -292,6 +334,12 @@ public class LogicaTresEnRaya {
 					}
 				}
 			}
+		}
+		//Segun el jugador recibido como parametro, asignamos los valores de los valores genericos a los atributos privados para persistir la nueva informacion:
+		if(jugador == 1) {
+			primeroX = primeroGenerico; numPasoX = numPasoGenerico;
+		}else {
+			primeroO = primeroGenerico; numPasoO = numPasoGenerico;
 		}
 	}
 	//Metodo get para dibujar el tablero de las 3 en raya, con la informacion actual:
