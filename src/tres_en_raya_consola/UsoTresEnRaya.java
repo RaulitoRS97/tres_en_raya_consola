@@ -304,7 +304,7 @@ public class UsoTresEnRaya {
 	}
 	//Metodo estatico encargado de imprimir una portada al iniciar el programa con una animacion:
 	static void imprimirPortada() {
-		int tiempoAnimacion=200;
+		int tiempoAnimacion=225;
 		//Imprimimos la animacion, y controlamos con 'try/catch' la excepcion 'InterruptedException':
 		try {
 			//Mostramos el tablero por pantalla
@@ -330,7 +330,7 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano                               "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(tiempoAnimacion);borrarConsola();
 			//Mostramos el tablero por pantalla
@@ -356,7 +356,7 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano                               "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(tiempoAnimacion);borrarConsola();
 			//Mostramos el tablero por pantalla
@@ -382,7 +382,7 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano                               "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(tiempoAnimacion);borrarConsola();
 			//Mostramos el tablero por pantalla
@@ -408,7 +408,7 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano                               "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(tiempoAnimacion);borrarConsola();
 			//Mostramos el tablero por pantalla
@@ -434,7 +434,7 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano                               "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(500);
 		}catch (Exception e) {

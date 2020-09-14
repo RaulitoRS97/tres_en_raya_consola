@@ -6,10 +6,13 @@ public class LogicaTresEnRaya {
 	//Atributos privados que funcionan de manera interna para la clase:
 	private double numPasoX, numPasoO;	//Numero de paso de estrategia para la IA.
 	private boolean primeroX, primeroO;	//Comprobador de turno inicial.
+	private int turno;	//Numero que contiene el turno que se lleva en la jugada.
 	//Constructor de la clase:
 	public LogicaTresEnRaya() {
 		//Creamos nuestro tablero de juego:
 		tablero = new int [9];
+		//Inicializamos el turno:
+		turno = 1;
 		//Utilizamos estos atributos para controlar las estrategias a seguir segun la evolucion de la partida:
 		numPasoX = 0;
 		numPasoO = 0;
@@ -21,6 +24,8 @@ public class LogicaTresEnRaya {
 	public void setMueveJugador(int posicion, int jugador) {
 		//Antes de tapar esa casilla con su ficha, se comprueba que este vacia:
 		if(tablero[posicion-1] == 0) {tablero[posicion-1] = jugador;}
+		//Aumentamos el turno:
+		setTurnoUp();
 	}
 	//Metodo get que devuelve un booleano en funcion de si se puede realizar el movimiento o no en la posicion pasada por parametro:
 	//[TRUE = MOVIMIENTO VALIDO, FALSE = MOVIMIENTO INVALIDO]
@@ -38,6 +43,8 @@ public class LogicaTresEnRaya {
 		numPasoO = 0;
 		primeroX = true;
 		primeroO = true;
+		//Inicializamos el turno:
+		turno = 1;
 	}
 	//Metodo get que devuelve un booleano utilizado para comprobar si gana el jugador pasado por parametro gana o pierde:
 	//[TRUE = JUGADOR GANA, FALSE = JUGADOR NO GANA]
@@ -341,6 +348,8 @@ public class LogicaTresEnRaya {
 		}else {
 			primeroO = primeroGenerico; numPasoO = numPasoGenerico;
 		}
+		//Aumentamos el turno:
+		setTurnoUp();
 	}
 	//Metodo get para dibujar el tablero de las 3 en raya, con la informacion actual:
 	public void getDibujaTablero() {
@@ -446,13 +455,19 @@ public class LogicaTresEnRaya {
 					//Si es la ultima linea divisoria se imprime la siguiente estructura:
 					else {
 						System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
-						System.out.println("│                                                          │");
+						System.out.println("│                         "+AMARILLO_BRILLANTE+"Turno: "+turno+"                         "+NEGRO_BRILLANTE+"│");
 					}
 					//Reiniciamos valores:
 					j = 0;
 					aux = "";
 				}
 			}
+		}
+	}
+	//Metodo de aumento para el atributo turno:
+	public void setTurnoUp() {
+		if(turno < 9 && !getGanaJugador(1) && !getGanaJugador(2)) {
+			turno++;
 		}
 	}
 }
