@@ -40,7 +40,7 @@ public class Lanzadera {
 				auxLocalizacion=localizacionJAR.substring(6).replace('/','\\');
 				localizacionJAR="\""+auxLocalizacion.replace("%20"," ")+"\"";
 				//Creamos una nueva CMD, ya con el cambio de la clave del registro en uso, y lanzamos el programa principal dentro de nuestro jar (ademas ya sabemos la ubicacion absoluta de el):
-				new ProcessBuilder("CMD","/C", "START", "Tres En Raya - Version 1.0", "/MAX", "java","-cp", localizacionJAR, "UsoTresEnRaya").start();
+				new ProcessBuilder("CMD","/C", "START", "Tres En Raya - Version 1.1", "/MAX", "java","-cp", localizacionJAR, "UsoTresEnRaya").start();
 				//Buscamos el proceso de la CMD en la que se ha ejecutado la lanzadera, para matar su proceso y que desaparezca la ventana de la consola y solo quede la anterior CMD con el programa lanzado.
 				//Para eso mostramos las tareas de CMD cuyo Titulo de ventana sea 'java lanzadera', y luego extraemos su PID para poder acabar el proceso:
 				ProcessBuilder pbObtenerPID = new ProcessBuilder("TASKLIST", "/V", "/FI", "IMAGENAME EQ CMD.EXE", "/FO", "CSV", "/NH");	//Creamos el proceso.
@@ -92,7 +92,7 @@ public class Lanzadera {
 				auxLocalizacion=localizacionJAR.substring(5);
 				localizacionJAR="\""+auxLocalizacion.replace("%20"," ")+"\"";
                 //Creamos una nueva bash, donde lanzamos el programa principal dentro de nuestro jar, en 'Linux' los codigos de escape ANSI estan habilitados en su consola por defecto:
-			    new ProcessBuilder("gnome-terminal", "--maximize", "-t", "Tres En Raya - Version 1.0", "--", "/bin/bash", "-c", "java -cp "+localizacionJAR+" UsoTresEnRaya").start().waitFor();
+			    new ProcessBuilder("gnome-terminal", "--maximize", "-t", "Tres En Raya - Version 1.1", "--", "/bin/bash", "-c", "java -cp "+localizacionJAR+" UsoTresEnRaya").start().waitFor();
 			    //Buscamos el proceso de la bash que ha ejecutado la lanzadera, para matar su proceso y que desaparezca y solo quede la anterior bash con el programa lanzado.
 			    //Para eso mostramos los procesos haciendo un filtrado con Grep y solo aparezca el que contenga 'java lanzadera', y luego extraemos su PID para poder acabar el proceso:
 			    ProcessBuilder pbObtenerPID = new ProcessBuilder("/bin/bash", "-c", "ps -o pid,cmd | grep \'bash\' | grep -v \'grep\'");	//Creamos el proceso.

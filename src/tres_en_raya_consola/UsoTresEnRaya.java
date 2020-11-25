@@ -309,7 +309,7 @@ public class UsoTresEnRaya {
 		try {
 			//Mostramos el tablero por pantalla
 			System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
-			System.out.println("│                                                          │");
+			System.out.println("│                       "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.1                       "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"┌────────────┬────────────┬────────────┐         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
@@ -330,12 +330,12 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano"+BLANCO+"   │   "+AMARILLO_BRILLANTE+"github.com/RaulitoRS97"+NEGRO_BRILLANTE+"  │");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(tiempoAnimacion);borrarConsola();
 			//Mostramos el tablero por pantalla
 			System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
-			System.out.println("│                                                          │");
+			System.out.println("│                       "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.1                       "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"┌────────────┬────────────┬────────────┐         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│   "+CYAN_BRILLANTE+"██  ██   "+BLANCO+"│            │            │         "+NEGRO_BRILLANTE+"│");
@@ -356,12 +356,12 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano"+BLANCO+"   │   "+AMARILLO_BRILLANTE+"github.com/RaulitoRS97"+NEGRO_BRILLANTE+"  │");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(tiempoAnimacion);borrarConsola();
 			//Mostramos el tablero por pantalla
 			System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
-			System.out.println("│                                                          │");
+			System.out.println("│                       "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.1                       "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"┌────────────┬────────────┬────────────┐         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│   "+CYAN_BRILLANTE+"██  ██   "+BLANCO+"│            │            │         "+NEGRO_BRILLANTE+"│");
@@ -382,12 +382,12 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano"+BLANCO+"   │   "+AMARILLO_BRILLANTE+"github.com/RaulitoRS97"+NEGRO_BRILLANTE+"  │");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(tiempoAnimacion);borrarConsola();
 			//Mostramos el tablero por pantalla
 			System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
-			System.out.println("│                                                          │");
+			System.out.println("│                       "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.1                       "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"┌────────────┬────────────┬────────────┐         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│   "+CYAN_BRILLANTE+"██  ██   "+BLANCO+"│            │            │         "+NEGRO_BRILLANTE+"│");
@@ -408,12 +408,12 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano"+BLANCO+"   │   "+AMARILLO_BRILLANTE+"github.com/RaulitoRS97"+NEGRO_BRILLANTE+"  │");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(tiempoAnimacion);borrarConsola();
 			//Mostramos el tablero por pantalla
 			System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
-			System.out.println("│                                                          │");
+			System.out.println("│                       "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.1                       "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"┌────────────┬────────────┬────────────┐         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"│   "+VERDE_BRILLANTE+"██  ██   "+BLANCO+"│            │            │         "+NEGRO_BRILLANTE+"│");
@@ -434,7 +434,7 @@ public class UsoTresEnRaya {
 			System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
 			System.out.println("│                                                          │");
-			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano        "+BLANCO+"Version: "+AMARILLO_BRILLANTE+"1.0           "+NEGRO_BRILLANTE+"│");
+			System.out.println("│  "+BLANCO+"Autor: "+AMARILLO_BRILLANTE+"Raul Ramos Serrano"+BLANCO+"   │   "+AMARILLO_BRILLANTE+"github.com/RaulitoRS97"+NEGRO_BRILLANTE+"  │");
 			System.out.println("└──────────────────────────────────────────────────────────┘");
 			Thread.sleep(500);
 		}catch (Exception e) {
