@@ -1,4 +1,7 @@
 package tres_en_raya_consola;
+
+import org.apache.commons.lang3.StringUtils;
+
 //Clase que contiene toda la logica del juego, como las comprobaciones, los pasos a realizar por la IA ...:
 public class LogicaTresEnRaya {
 	//Atributos privados para la clase:
@@ -469,5 +472,57 @@ public class LogicaTresEnRaya {
 		if(turno < 9 && !getGanaJugador(1) && !getGanaJugador(2)) {
 			turno++;
 		}
+	}
+	//Metodo estatico encargado de calcular y retornar los mensajes calculando el numero de espacios en blanco a dejar para que cuadre con el separador de interfaz:
+	//Recibe un separador de interfaz, y el mensaje al cual dar formato para imprimir, y un entero que indica el tipo de estilo a pintar el texto [0 - Alineado a la izquierda][1 - Alineado en el centro]
+	static String calcularMensajesInterfaz(String separadorInterfaz, String mensajeAimprimir, int estilo) {
+		int dimension = mensajeAimprimir.length()-1; //Variable que contendra los espacios a imprimir segun el separador y demas medidas.
+		String mensajeFinal="";		 //Variable que contendra el mensaje final con el formato adecuado para devolver.
+		int contColores=0;							 //Variable que cuenta las ocurrencias de cada color en el mensaje.
+		//Comprobamos si el mensaje recibido tiene colores, y si es asi le quitamos a la cuenta de dimension lo que ocupen esos colores dentro del mensaje:
+		contColores = StringUtils.countMatches(mensajeAimprimir, UsoTresEnRaya.ROJO_BRILLANTE);
+        dimension-=UsoTresEnRaya.ROJO_BRILLANTE.length()*contColores;
+        contColores = StringUtils.countMatches(mensajeAimprimir, UsoTresEnRaya.ROJO_SUBRAYADO_BRILLANTE);
+        dimension-=UsoTresEnRaya.ROJO_SUBRAYADO_BRILLANTE.length()*contColores;
+        contColores = StringUtils.countMatches(mensajeAimprimir, UsoTresEnRaya.VERDE_BRILLANTE);
+        dimension-=UsoTresEnRaya.VERDE_BRILLANTE.length()*contColores;
+        contColores = StringUtils.countMatches(mensajeAimprimir, UsoTresEnRaya.CYAN_BRILLANTE);
+        dimension-=UsoTresEnRaya.CYAN_BRILLANTE.length()*contColores;
+        contColores = StringUtils.countMatches(mensajeAimprimir, UsoTresEnRaya.BLANCO_BRILLANTE);
+        dimension-=UsoTresEnRaya.BLANCO_BRILLANTE.length()*contColores;
+        contColores = StringUtils.countMatches(mensajeAimprimir, UsoTresEnRaya.NEGRO_BRILLANTE);
+        dimension-=UsoTresEnRaya.NEGRO_BRILLANTE.length()*contColores;
+        contColores = StringUtils.countMatches(mensajeAimprimir, UsoTresEnRaya.AMARILLO_BRILLANTE);
+        dimension-=UsoTresEnRaya.AMARILLO_BRILLANTE.length()*contColores;
+        contColores = StringUtils.countMatches(mensajeAimprimir, UsoTresEnRaya.BLANCO);
+	    dimension-=UsoTresEnRaya.BLANCO.length()*contColores;
+		//Se resta a separador interfaz lo que ocupa el mensaje una vez limpiado de colores:
+		dimension=separadorInterfaz.length()-dimension;
+		//Agregamos la pieza inicial:
+		mensajeFinal+="│";dimension--;
+		//Si estilo es 0 el texto se alineara a la izquierda:
+		if(estilo==0) {
+			mensajeFinal+=" ";dimension--;
+			mensajeFinal+=mensajeAimprimir+UsoTresEnRaya.NEGRO_BRILLANTE;
+			//Si es mayor o igual a 0 pasamos a imprimir los espacios y el formato adecuado:
+			if(dimension>=0) {
+				for (int j = 0; j < dimension; j++) {mensajeFinal+=" ";}
+				//Agregamos la pieza final:
+				mensajeFinal+="│";
+			}
+		}//Si estilo es 1 el texto se alineara al centro:
+		else if(estilo==1) {
+			int espaciosA=dimension/2;
+			int espaciosB=dimension-espaciosA;
+			for (int i = 0; i < espaciosA; i++) {mensajeFinal+=" ";}
+			mensajeFinal+=mensajeAimprimir+UsoTresEnRaya.NEGRO_BRILLANTE;
+			for (int i = 0; i < espaciosB; i++) {mensajeFinal+=" ";}
+			if(dimension>=0) {
+				//Agregamos la pieza final:
+				mensajeFinal+="│";
+			}
+		}
+		//Si no solo restablecemos el color y devolvemos el mensaje a imprimir:
+		return mensajeFinal;
 	}
 }
