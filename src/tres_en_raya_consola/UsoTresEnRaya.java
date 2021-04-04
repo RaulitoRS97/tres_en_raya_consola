@@ -10,6 +10,8 @@ public class UsoTresEnRaya {
 								NEGRO_BRILLANTE="\u001B[0m\033[1;30m", AMARILLO_BRILLANTE="\u001B[0m\033[0;93m";
 	//Tablero del juego:
 	private static LogicaTresEnRaya miJuego = new LogicaTresEnRaya();		//Creamos un objeto de la clase LogicaTresEnRaya.
+	//Separador de interfaz que se va a usar:
+	private static final String separadorInterfaz ="──────────────────────────────────────────────────────────";
 	//Metodo principal:
 	public static void main(String[] args) {
 		//Imprimimos la portada llamando al siguiente metodo:
@@ -39,8 +41,8 @@ public class UsoTresEnRaya {
 			}
 			//Siempre que no sea la opcion '0', se mostrara el siguiente mensaje y se borrara la consola:
 			if(opc!=0) {
-				System.out.println(NEGRO_BRILLANTE+"│ "+BLANCO_BRILLANTE+"Pulse enter para continuar ...                           "+NEGRO_BRILLANTE+"│");
-				System.out.println("└──────────────────────────────────────────────────────────┘");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Pulse enter para continuar ...", 0));
+				System.out.println("└"+separadorInterfaz+"┘");
 				in.nextLine();
 				borrarConsola();
 			}
@@ -52,45 +54,45 @@ public class UsoTresEnRaya {
 		miJuego.getDibujaTablero();
 		//Mostramos un mensaje para que la IA 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
-			System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-			System.out.println("│ "+BLANCO_BRILLANTE+"IA X moverá cuando pulse un enter:                       "+NEGRO_BRILLANTE+"│");
-			System.out.println("└──────────────────────────────────────────────────────────┘");
+			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+			System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"IA X moverá cuando pulse un enter:", 0));
+			System.out.println("└"+separadorInterfaz+"┘");
 			in.nextLine();
 			miJuego.setMueveOrdenador(1, 2);
 			borrarConsola();
 			miJuego.getDibujaTablero();
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"La IA X ha ganado la partida.                           "+NEGRO_BRILLANTE+"│");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"La IA X ha ganado la partida.", 0));
+				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 			else if(!miJuego.getQuedanMovimientos()) {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Ni la IA PUEDE CONTRA LA IA.   "+NEGRO_BRILLANTE+"│");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Ni la IA PUEDE CONTRA LA IA.", 0));
+				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Sino, pasara a jugar la IA de las O:
 			else {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"IA O moverá cuando pulse un enter:                       "+NEGRO_BRILLANTE+"│");
-				System.out.println("└──────────────────────────────────────────────────────────┘");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"IA O moverá cuando pulse un enter:", 0));
+				System.out.println("└"+separadorInterfaz+"┘");
 				in.nextLine();
 				miJuego.setMueveOrdenador(2, 1);
 				borrarConsola();
 				miJuego.getDibujaTablero();
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+BLANCO_BRILLANTE+"La IA O ha ganado la partida.                           "+NEGRO_BRILLANTE+"│");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"La IA O ha ganado la partida.", 0));
+					System.out.println("├"+separadorInterfaz+"┤");
 				}
 				//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 				else if(!miJuego.getQuedanMovimientos()) {
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Ni la IA PUEDE CONTRA LA IA.   "+NEGRO_BRILLANTE+"│");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Ni la IA PUEDE CONTRA LA IA.", 0));
+					System.out.println("├"+separadorInterfaz+"┤");
 				}
 			}
 		}while(!(miJuego.getGanaJugador(1)) && !(miJuego.getGanaJugador(2)) && miJuego.getQuedanMovimientos());
@@ -103,44 +105,44 @@ public class UsoTresEnRaya {
 		miJuego.getDibujaTablero();
 		//Mostramos un mensaje para que la IA 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
-			System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-			System.out.println("│ "+BLANCO_BRILLANTE+"IA X moverá cuando pulse un enter:                       "+NEGRO_BRILLANTE+"│");
-			System.out.println("└──────────────────────────────────────────────────────────┘");
+			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+			System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"IA X moverá cuando pulse un enter:", 0));
+			System.out.println("└"+separadorInterfaz+"┘");
 			in.nextLine();
 			miJuego.setMueveOrdenador(1, 2);
 			borrarConsola();
 			miJuego.getDibujaTablero();
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"Has sido derrotado, la IA X te ha humillado..            "+NEGRO_BRILLANTE+"│");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Has sido derrotado, la IA X te ha humillado...", 0));
+				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 			else if(!miJuego.getQuedanMovimientos()) {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...   "+NEGRO_BRILLANTE+"│");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...", 0));
+				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Sino, pasara a jugar el jugador las O:
 			else {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"Jugador O introduzca su posición por favor:              "+NEGRO_BRILLANTE+"│");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Jugador O introduzca su posición por favor:", 0));
 				pos = recogerPosicion(in);
 				miJuego.setMueveJugador(pos, 2);
 				borrarConsola();
 				miJuego.getDibujaTablero();
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador O, usted ganó la partida.        "+NEGRO_BRILLANTE+"│");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador O, usted ganó la partida.", 0));
+					System.out.println("├"+separadorInterfaz+"┤");
 				}
 				//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 				else if(!miJuego.getQuedanMovimientos()) {
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...   "+NEGRO_BRILLANTE+"│");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...", 0));
+					System.out.println("├"+separadorInterfaz+"┤");
 				}
 			}
 		}while(!(miJuego.getGanaJugador(1)) && !(miJuego.getGanaJugador(2)) && miJuego.getQuedanMovimientos());
@@ -153,44 +155,44 @@ public class UsoTresEnRaya {
 		miJuego.getDibujaTablero();
 		//Mostramos un mensaje para que el jugador 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
-			System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-			System.out.println("│ "+BLANCO_BRILLANTE+"Jugador X introduzca su posición por favor:              "+NEGRO_BRILLANTE+"│");
+			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+			System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Jugador X introduzca su posición por favor:", 0));
 			pos = recogerPosicion(in);
 			miJuego.setMueveJugador(pos, 1);
 			borrarConsola();
 			miJuego.getDibujaTablero();
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador X, usted ganó la partida.        "+NEGRO_BRILLANTE+"│");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador X, usted ganó la partida.", 0));
+				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 			else if(!miJuego.getQuedanMovimientos()) {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...   "+NEGRO_BRILLANTE+"│");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...", 0));
+				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Sino, pasara a jugar la IA de las O:
 			else {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"IA O moverá cuando pulse un enter:                       "+NEGRO_BRILLANTE+"│");
-				System.out.println("└──────────────────────────────────────────────────────────┘");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"IA O moverá cuando pulse un enter:", 0));
+				System.out.println("└"+separadorInterfaz+"┘");
 				in.nextLine();
 				miJuego.setMueveOrdenador(2, 1);
 				borrarConsola();
 				miJuego.getDibujaTablero();
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+BLANCO_BRILLANTE+"Has sido derrotado, la IA O te ha humillado..            "+NEGRO_BRILLANTE+"│");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Has sido derrotado, la IA O te ha humillado...", 0));
+					System.out.println("├"+separadorInterfaz+"┤");
 				}
 				//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 				else if(!miJuego.getQuedanMovimientos()) {
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...   "+NEGRO_BRILLANTE+"│");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...", 0));
+					System.out.println("├"+separadorInterfaz+"┤");
 				}
 			}
 		}while(!(miJuego.getGanaJugador(1)) && !(miJuego.getGanaJugador(2)) && miJuego.getQuedanMovimientos());
@@ -203,43 +205,43 @@ public class UsoTresEnRaya {
 		miJuego.getDibujaTablero();
 		//Mostramos un mensaje para que el jugador 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
-			System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-			System.out.println("│ "+BLANCO_BRILLANTE+"Jugador X introduzca su posición por favor:              "+NEGRO_BRILLANTE+"│");
+			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+			System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Jugador X introduzca su posición por favor:", 0));
 			pos = recogerPosicion(in);
 			miJuego.setMueveJugador(pos, 1);
 			borrarConsola();
 			miJuego.getDibujaTablero();
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador X, usted ganó la partida.        "+NEGRO_BRILLANTE+"│");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador X, usted ganó la partida.", 0));
+				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 			else if(!miJuego.getQuedanMovimientos()) {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Bien jugado.                   "+NEGRO_BRILLANTE+"│");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Bien jugado.", 0));
+				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Sino, pasara a jugar el jugador de las O:
 			else {
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+BLANCO_BRILLANTE+"Jugador O introduzca su posición por favor:              "+NEGRO_BRILLANTE+"│");
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Jugador O introduzca su posición por favor:", 0));
 				pos = recogerPosicion(in);
 				miJuego.setMueveJugador(pos, 2);
 				borrarConsola();
 				miJuego.getDibujaTablero();
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador O, usted ganó la partida.        "+NEGRO_BRILLANTE+"│");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador O, usted ganó la partida.", 0));
+					System.out.println("├"+separadorInterfaz+"┤");
 				}
 				//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 				else if(!miJuego.getQuedanMovimientos()) {
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Bien jugado.                   "+NEGRO_BRILLANTE+"│");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Bien jugado.", 0));
+					System.out.println("├"+separadorInterfaz+"┤");
 				}
 			}
 		}while(!(miJuego.getGanaJugador(1)) && !(miJuego.getGanaJugador(2)) && miJuego.getQuedanMovimientos());
@@ -267,7 +269,7 @@ public class UsoTresEnRaya {
 				System.out.print  ("├──────────────────────────────────────────────────────────┤\n│ "+BLANCO_BRILLANTE);
 			}
 		}while(pos < 1 || pos > 9 || !(miJuego.getMovimientoValido(pos)));
-		System.out.println(NEGRO_BRILLANTE+"└──────────────────────────────────────────────────────────┘");
+		System.out.println("└"+separadorInterfaz+"┘");
 		//Retornamos la posicion:
 		return pos;
 	}
@@ -448,13 +450,13 @@ public class UsoTresEnRaya {
 			//En el caso de 'Windows' creamos un proceso anonimo que lanza 'CMD', y el comando 'CLS', es inherente a la entrada y salida del proceso principal, y se espera a que se termine para seguir el flujo del programa:
 			try {
 				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-			} catch (InterruptedException | IOException e) {System.out.println(ROJO_SUBRAYADO_BRILLANTE+"Error al borrar la consola de Windows."+BLANCO);}
+			} catch (InterruptedException | IOException e) {System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_SUBRAYADO_BRILLANTE+"Error al borrar la consola de Windows.", 0));}
 		}
 		else if(System.getProperty("os.name").toString().toUpperCase().contains("LINUX")){
 			//En el caso de 'Linux' creamos un proceso anonimo que lanza 'bash', y el comando 'clear', es inherenete a la entrada y salida del proceso principal, y se espera a que se termine para seguir el flujo del programa:
 			try {
 				new ProcessBuilder("bash", "-c", "clear").inheritIO().start().waitFor();
-			} catch (InterruptedException | IOException e) {System.out.println(ROJO_SUBRAYADO_BRILLANTE+"Error al borrar la consola de Linux."+BLANCO);}
+			} catch (InterruptedException | IOException e) {System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_SUBRAYADO_BRILLANTE+"Error al borrar la consola de Linux.", 0));}
 		}
 	}
 }
