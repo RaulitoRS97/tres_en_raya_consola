@@ -253,20 +253,20 @@ public class UsoTresEnRaya {
 		String aux = "";
 		int pos = -1;
 		//Pedimos la posicion y controlamos la entrada de datos:
-		System.out.print  ("├──────────────────────────────────────────────────────────┤\n│ "+BLANCO_BRILLANTE);
+		System.out.print  ("├"+separadorInterfaz+"┤\n│ "+BLANCO);
 		do {
 			aux = in.nextLine();
 			try {	//Intentamos castear a 'aux' a entero, y si no lo conseguimos controlamos la excepcion:
 				pos = Integer.parseInt(aux.trim());
 				if(pos < 1 ||  pos > 9 || !(miJuego.getMovimientoValido(pos))) {	//Si 'pos' no esta en el valor indicado mostramos mensaje de error:
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+ROJO_BRILLANTE+"Error, introduce un valor válido por favor:              "+NEGRO_BRILLANTE+"│");
-					System.out.print  ("├──────────────────────────────────────────────────────────┤\n│ "+BLANCO_BRILLANTE);
+					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_BRILLANTE+"Error, introduce un valor válido por favor:", 0));
+					System.out.print  ("├"+separadorInterfaz+"┤\n│ "+BLANCO);
 				}
 			}catch(NumberFormatException n) {	//Mostramos mensaje de error cuando se captura la excepcion:
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+ROJO_BRILLANTE+"Error, introduce un valor válido por favor:              "+NEGRO_BRILLANTE+"│");
-				System.out.print  ("├──────────────────────────────────────────────────────────┤\n│ "+BLANCO_BRILLANTE);
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_BRILLANTE+"Error, introduce un valor válido por favor:", 0));
+				System.out.print  ("├"+separadorInterfaz+"┤\n│ "+BLANCO);
 			}
 		}while(pos < 1 || pos > 9 || !(miJuego.getMovimientoValido(pos)));
 		System.out.println("└"+separadorInterfaz+"┘");
@@ -275,31 +275,36 @@ public class UsoTresEnRaya {
 	}
 	//Metodo estatico que mostrara un menu para recoger y devolver la opcion elegida por el usuario:
 	public static int menu(Scanner in) {
+		//Strings para guardar el texto procesado a mostrar e imprimirlo del tiron y asi que no se vea el cursor moverse como locooo:
+		String cuerpo = "", cabeceraError = "";
 		int opc = -1;		//Variable opcion que guardara el valor de la opcion elegida.
 		String aux="";		//String auxiliar para leer los datos con el y luego castear a entero.
-		System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
-		System.out.println("│ "+BLANCO_BRILLANTE+"Introduzca una de las siguientes opciones:               "+NEGRO_BRILLANTE+"│ ");
-		System.out.println("├──────────────────────────────────────────────────────────┤");
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"1"+BLANCO_BRILLANTE+") Jugador Vs Jugador.", 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"2"+BLANCO_BRILLANTE+") Jugador Vs IA.", 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"3"+BLANCO_BRILLANTE+") IA Vs Jugador.", 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"4"+BLANCO_BRILLANTE+") IA Vs IA.", 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, "    "+BLANCO_BRILLANTE+"("+ROJO_BRILLANTE+"0"+BLANCO_BRILLANTE+") Salir del juego.", 0)+"\r\n";
+		cuerpo+=  ("├"+separadorInterfaz+"┤\r\n│ "+BLANCO);
+		cabeceraError+=(NEGRO_BRILLANTE+"┌"+separadorInterfaz+"┐\r\n");
+		cabeceraError+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_SUBRAYADO_BRILLANTE+"Error, reintroduzca una opcion valida:", 0)+"\r\n";
+		cabeceraError+=("├"+separadorInterfaz+"┤\r\n");
+		//Procesamos el texto a mostrar:
+		System.out.println(NEGRO_BRILLANTE+"┌"+separadorInterfaz+"┐");
+		System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Introduzca una de las siguientes opciones:", 0));
+		System.out.println("├"+separadorInterfaz+"┤");
 		//Con un bucle 'do While' controlamos la opcion elegida por el usuario:
 		do {
-			System.out.println("│ "+BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"1"+BLANCO_BRILLANTE+") Jugador Vs Jugador.                                  "+NEGRO_BRILLANTE+"│");
-			System.out.println("│ "+BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"2"+BLANCO_BRILLANTE+") Jugador Vs IA.                                       "+NEGRO_BRILLANTE+"│");
-			System.out.println("│ "+BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"3"+BLANCO_BRILLANTE+") IA Vs Jugador.                                       "+NEGRO_BRILLANTE+"│");
-			System.out.println("│ "+BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"4"+BLANCO_BRILLANTE+") IA Vs IA.                                            "+NEGRO_BRILLANTE+"│");
-			System.out.println("│     "+BLANCO_BRILLANTE+"("+ROJO_BRILLANTE+"0"+BLANCO_BRILLANTE+") Salir del juego.                                 "+NEGRO_BRILLANTE+"│");
-			System.out.print  ("├──────────────────────────────────────────────────────────┤\n│ "+BLANCO_BRILLANTE);
+			System.out.print(cuerpo);
 			aux=in.nextLine();	//La primera vez leemos en 'aux'.
 			try {	//Intentamos castear a 'aux' a entero, y si no lo conseguimos controlamos la excepcion:
 				opc=Integer.parseInt(aux.trim());
 				if(opc<0||opc>4) {	//Si 'opc' no esta en el valor indicado mostramos mensaje de error:
-					System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-					System.out.println("│ "+ROJO_SUBRAYADO_BRILLANTE+"Error, reintroduzca una opcion valida:"+NEGRO_BRILLANTE+"                   │");
-					System.out.println("├──────────────────────────────────────────────────────────┤");
+					borrarConsola();
+					System.out.print(cabeceraError);
 				}
 			}catch(NumberFormatException n) {	//Mostramos mensaje de error cuando se captura la excepcion:
-				System.out.println(NEGRO_BRILLANTE+"├──────────────────────────────────────────────────────────┤");
-				System.out.println("│ "+ROJO_SUBRAYADO_BRILLANTE+"Error, reintroduzca una opcion valida:"+NEGRO_BRILLANTE+"                   │");
-				System.out.println("├──────────────────────────────────────────────────────────┤");
+				borrarConsola();
+				System.out.print(cabeceraError);
 			}
 		}while(opc<0||opc>4);
 		return opc;	//Devolvemos el valor de 'opc'.
