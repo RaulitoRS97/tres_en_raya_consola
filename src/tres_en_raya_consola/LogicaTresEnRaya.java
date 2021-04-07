@@ -354,8 +354,10 @@ public class LogicaTresEnRaya {
 		//Aumentamos el turno:
 		setTurnoUp();
 	}
-	//Metodo get para dibujar el tablero de las 3 en raya, con la informacion actual:
-	public void getDibujaTablero() {
+	//Metodo get para dibujar el tablero de las 3 en raya, con la informacion actual, recibe un String con el separador de interfaz a usar:
+	public void getDibujaTablero(String separadorInterfaz) {
+		//Strings para guardar el texto procesado a mostrar e imprimirlo del tiron y asi que no se vea el cursor moverse como locooo:
+		String cuerpo = "";
 		//Codigos de escape ANSI que representan diferentes colores, destacar que cada codigo tiene delante el codigo de reinicio '\u0001B[0m':
 		final String ROJO_BRILLANTE="\u001B[0m\033[0;91m", VERDE_BRILLANTE="\u001B[0m\033[1;32m", CYAN_BRILLANTE="\u001B[0m\033[0;96m", BLANCO="\u001B[0m\033[37m", NEGRO_BRILLANTE="\u001B[0m\033[1;30m", AMARILLO_BRILLANTE="\u001B[0m\033[0;93m";
 		//Variables contadores:
@@ -390,26 +392,25 @@ public class LogicaTresEnRaya {
 			else if(tablero[0] == 2 && tablero[4] == 2 && tablero[8] == 2) {pos1 = 0; pos2 = 4; pos3 = 8;}
 			else if(tablero[2] == 2 && tablero[4] == 2 && tablero[6] == 2) {pos1 = 2; pos2 = 4; pos3 = 6;}
 		}
-		//Mostramos el tablero por pantalla:
-		System.out.println(NEGRO_BRILLANTE+"┌──────────────────────────────────────────────────────────┐");
-		System.out.println("│                          "+AMARILLO_BRILLANTE+"TABLERO                         "+NEGRO_BRILLANTE+"│");
-		System.out.println("│         "+BLANCO+"┌────────────┬────────────┬────────────┐         "+NEGRO_BRILLANTE+"│");
-		System.out.println("│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
-		//Bucle for encargado de imprimir parte del tablero, segun la informacion contenida actual:
+		//Procesamos el tablero:
+		cuerpo+=calcularMensajesInterfaz(separadorInterfaz, AMARILLO_BRILLANTE+"TABLERO", 1)+"\r\n";
+		cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"┌────────────┬────────────┬────────────┐", 1)+"\r\n";
+		cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"│            │            │            │", 1)+"\r\n";
+		//Bucle for encargado de procesar parte del tablero, segun la informacion contenida actual:
 		for(i = 0, j = 0 ; i < 9 ; i++) {
 			if(i == 0 || i == 3 || i == 6) {
-				aux += BLANCO+"│ ";			//Impresion de los separadores laterales izquierdos de las casillas.
+				aux += BLANCO+"│ ";			//Procesamiento de los separadores laterales izquierdos de las casillas.
 			}
 			if(tablero[i] == 0) {
-				aux += vacio[j];			//Si la casilla esta vacia, se imprime la figura vacia.
+				aux += vacio[j];			//Si la casilla esta vacia, se procesa la figura vacia.
 				if(i == 2 || i == 5 || i == 8) {
-					aux += BLANCO+" │";		//Impresion de los separadores laterales derechos de las casillas.
+					aux += BLANCO+" │";		//Procesamiento de los separadores laterales derechos de las casillas.
 				}
 				else {
-					aux += BLANCO+" │ ";	//Impresion de los separadores centrales de las casillas.
+					aux += BLANCO+" │ ";	//Procesamiento de los separadores centrales de las casillas.
 				}
 			}
-			else if(tablero[i] == 1) {		//Si la casilla contiene una X, se imprime su figura, dependiendo de si ha ganado o no se utiliza una u otra.
+			else if(tablero[i] == 1) {		//Si la casilla contiene una X, se procesa su figura, dependiendo de si ha ganado o no se utiliza una u otra.
 				if(getGanaJugador(1) && (pos1 == i || pos2 == i || pos3 == i)) {
 					aux += jugadorXGanador[j];
 				}
@@ -417,13 +418,13 @@ public class LogicaTresEnRaya {
 					aux += jugadorX[j];
 				}
 				if(i == 2 || i == 5 || i == 8) {
-					aux += BLANCO+" │";		//Impresion de los separadores laterales derechos de las casillas.
+					aux += BLANCO+" │";		//Procesamiento de los separadores laterales derechos de las casillas.
 				}
 				else {
-					aux += BLANCO+" │ ";	//Impresion de los separadores centrales de las casillas.
+					aux += BLANCO+" │ ";	//Procesamiento de los separadores centrales de las casillas.
 				}
 			}
-			else if(tablero[i] == 2){		//Si la casilla contiene una O, se imprime su figura, dependiendo de si ha ganado o no se utiliza una u otra.
+			else if(tablero[i] == 2){		//Si la casilla contiene una O, se procesa su figura, dependiendo de si ha ganado o no se utiliza una u otra.
 				if(getGanaJugador(2) && (pos1 == i || pos2 == i || pos3 == i)) {
 					aux += jugadorOGanador[j];
 				}
@@ -431,14 +432,14 @@ public class LogicaTresEnRaya {
 					aux += jugadorO[j];
 				}
 				if(i == 2 || i == 5 || i == 8) {
-					aux += BLANCO+" │";		//Impresion de los separadores laterales derechos de las casillas.
+					aux += BLANCO+" │";		//Procesamiento de los separadores laterales derechos de las casillas.
 				}
 				else {
-					aux += BLANCO+" │ ";	//Impresion de los separadores centrales de las casillas.
+					aux += BLANCO+" │ ";	//Procesamiento de los separadores centrales de las casillas.
 				}
 			}
-			if(i == 2 || i == 5 || i == 8) {	//Cuando se tenga esa linea concatenada la pasamos a imprimir:
-				System.out.println(NEGRO_BRILLANTE+"│         " + aux + "         "+NEGRO_BRILLANTE+"│");
+			if(i == 2 || i == 5 || i == 8) {	//Cuando se tenga esa linea concatenada la pasamos a procesar:
+				cuerpo+=calcularMensajesInterfaz(separadorInterfaz, aux, 1)+"\r\n";
 				//Reiniciamos valores para la siguiente linea, siempre que no sea la ultima linea antes de la siguiente casilla:
 				if(j < 2) {
 					if(i == 2) {i = -1;}
@@ -449,16 +450,16 @@ public class LogicaTresEnRaya {
 				}
 				//Si es la ultima linea antes de la siguiente casilla, se muestra en pequeño los numeros que hacen referencia a esa casilla:
 				else {
-					System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"│          " +AMARILLO_BRILLANTE+(i-1) + " "+BLANCO+"│          " +AMARILLO_BRILLANTE+ (i) + " "+BLANCO+"│          " +AMARILLO_BRILLANTE+(i+1) + " "+BLANCO+"│         "+NEGRO_BRILLANTE+"│");
-					//Si no es la ultima linea divisoria se imprime la siguiente estructura:
+					cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"│          " +AMARILLO_BRILLANTE+(i-1) + " "+BLANCO+"│          " +AMARILLO_BRILLANTE+ (i) + " "+BLANCO+"│          " +AMARILLO_BRILLANTE+(i+1) + " "+BLANCO+"│", 1)+"\r\n";
+					//Si no es la ultima linea divisoria se procesa la siguiente estructura:
 					if(i < 8) {
-						System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"├────────────┼────────────┼────────────┤         "+NEGRO_BRILLANTE+"│");
-						System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"│            │            │            │         "+NEGRO_BRILLANTE+"│");
+						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"├────────────┼────────────┼────────────┤", 1)+"\r\n";
+						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"│            │            │            │", 1)+"\r\n";
 					}
-					//Si es la ultima linea divisoria se imprime la siguiente estructura:
+					//Si es la ultima linea divisoria se procesa la siguiente estructura:
 					else {
-						System.out.println(NEGRO_BRILLANTE+"│         "+BLANCO+"└────────────┴────────────┴────────────┘         "+NEGRO_BRILLANTE+"│");
-						System.out.println("│                         "+AMARILLO_BRILLANTE+"Turno: "+turno+"                         "+NEGRO_BRILLANTE+"│");
+						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"└────────────┴────────────┴────────────┘", 1)+"\r\n";
+						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, AMARILLO_BRILLANTE+"Turno: "+turno, 1)+"\r\n";
 					}
 					//Reiniciamos valores:
 					j = 0;
@@ -466,6 +467,9 @@ public class LogicaTresEnRaya {
 				}
 			}
 		}
+		//Imprimimos el tablero por pantalla:
+		System.out.println(NEGRO_BRILLANTE+"┌"+separadorInterfaz+"┐");
+		System.out.print  (cuerpo);
 	}
 	//Metodo de aumento para el atributo turno:
 	public void setTurnoUp() {

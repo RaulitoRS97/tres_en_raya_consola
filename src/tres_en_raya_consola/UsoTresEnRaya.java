@@ -51,7 +51,7 @@ public class UsoTresEnRaya {
 	//Metodo estatico que ejecutara la opcion numero 4 del menu, es decir IA X vs IA O:
 	public static void opcIA1vsIA2(Scanner in) {
 		borrarConsola();
-		miJuego.getDibujaTablero();
+		miJuego.getDibujaTablero(separadorInterfaz);
 		//Mostramos un mensaje para que la IA 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
 			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -60,7 +60,7 @@ public class UsoTresEnRaya {
 			in.nextLine();
 			miJuego.setMueveOrdenador(1, 2);
 			borrarConsola();
-			miJuego.getDibujaTablero();
+			miJuego.getDibujaTablero(separadorInterfaz);
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -81,7 +81,7 @@ public class UsoTresEnRaya {
 				in.nextLine();
 				miJuego.setMueveOrdenador(2, 1);
 				borrarConsola();
-				miJuego.getDibujaTablero();
+				miJuego.getDibujaTablero(separadorInterfaz);
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -102,7 +102,7 @@ public class UsoTresEnRaya {
 	public static void opcIA1vsP2(Scanner in) {
 		int pos = -1;			//Variable que contendra la posicion elegida por el jugador.
 		borrarConsola();
-		miJuego.getDibujaTablero();
+		miJuego.getDibujaTablero(separadorInterfaz);
 		//Mostramos un mensaje para que la IA 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
 			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -111,7 +111,7 @@ public class UsoTresEnRaya {
 			in.nextLine();
 			miJuego.setMueveOrdenador(1, 2);
 			borrarConsola();
-			miJuego.getDibujaTablero();
+			miJuego.getDibujaTablero(separadorInterfaz);
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -131,7 +131,7 @@ public class UsoTresEnRaya {
 				pos = recogerPosicion(in);
 				miJuego.setMueveJugador(pos, 2);
 				borrarConsola();
-				miJuego.getDibujaTablero();
+				miJuego.getDibujaTablero(separadorInterfaz);
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -152,7 +152,7 @@ public class UsoTresEnRaya {
 	public static void opcP1vsIA2(Scanner in) {
 		int pos = -1;			//Variable que contendra la posicion elegida por el jugador.
 		borrarConsola();
-		miJuego.getDibujaTablero();
+		miJuego.getDibujaTablero(separadorInterfaz);
 		//Mostramos un mensaje para que el jugador 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
 			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -160,7 +160,7 @@ public class UsoTresEnRaya {
 			pos = recogerPosicion(in);
 			miJuego.setMueveJugador(pos, 1);
 			borrarConsola();
-			miJuego.getDibujaTablero();
+			miJuego.getDibujaTablero(separadorInterfaz);
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -181,7 +181,7 @@ public class UsoTresEnRaya {
 				in.nextLine();
 				miJuego.setMueveOrdenador(2, 1);
 				borrarConsola();
-				miJuego.getDibujaTablero();
+				miJuego.getDibujaTablero(separadorInterfaz);
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -202,7 +202,7 @@ public class UsoTresEnRaya {
 	public static void opcP1vsP2(Scanner in) {
 		int pos = -1;			//Variable que contendra la posicion elegida por el jugador.
 		borrarConsola();
-		miJuego.getDibujaTablero();
+		miJuego.getDibujaTablero(separadorInterfaz);
 		//Mostramos un mensaje para que el jugador 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
 			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -210,7 +210,7 @@ public class UsoTresEnRaya {
 			pos = recogerPosicion(in);
 			miJuego.setMueveJugador(pos, 1);
 			borrarConsola();
-			miJuego.getDibujaTablero();
+			miJuego.getDibujaTablero(separadorInterfaz);
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
@@ -230,7 +230,7 @@ public class UsoTresEnRaya {
 				pos = recogerPosicion(in);
 				miJuego.setMueveJugador(pos, 2);
 				borrarConsola();
-				miJuego.getDibujaTablero();
+				miJuego.getDibujaTablero(separadorInterfaz);
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
