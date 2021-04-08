@@ -65,7 +65,7 @@ public class Lanzadera {
 							try{
 								pid=Integer.parseInt(aux);
 								pruebaPID=false;
-							}catch(NumberFormatException n){System.out.println("Error, no se encontro el PID del proceso Lanzadera - Windows");}
+							}catch(NumberFormatException n){System.out.println(Messages.getString("Lanzadera.consola.error.busquedaPidWindows"));}
 						}
 						j++;
 						aux="";
@@ -79,7 +79,7 @@ public class Lanzadera {
 					new ProcessBuilder("TASKKILL", "/PID", pid+"").start().waitFor();
 				}
 			} catch (InterruptedException | IOException e) {	//Control de excepciones:
-				System.out.println("Error al lanzar la aplicacion Tres En Raya en el entorno Windows");
+				System.out.println(Messages.getString("Lanzadera.consola.error.excepcionWindows"));
 			}
 		}
 		//Si el sistema operativo es 'Linux':
@@ -110,7 +110,7 @@ public class Lanzadera {
 						        try{
 							        pid=Integer.parseInt(aux);
 							        pruebaPID=false;
-						        }catch(NumberFormatException n){System.out.println("Error, no se encontro el PID del proceso Lanzadera - Linux");}
+						        }catch(NumberFormatException n){System.out.println(Messages.getString("Lanzadera.consola.error.busquedaPidLinux"));}
 					        }
 					        j++;
 					        aux="";
@@ -125,7 +125,7 @@ public class Lanzadera {
 					new ProcessBuilder("/bin/bash", "-c", "kill -9 "+pid).start().waitFor();
 				}
             } catch (InterruptedException | IOException e) {	//Control de excepciones:
-				System.out.println("Error al lanzar la aplicacion Tres En Raya en el entorno Linux");
+				System.out.println(Messages.getString("Lanzadera.consola.error.excepcionLinux"));
             }
         }
 	}
