@@ -2,6 +2,8 @@ package tres_en_raya_consola;
 //Importamos los siguientes paquetes:
 import java.io.IOException;
 import java.util.Scanner;
+
+import Principal.Messages;
 //Clase principal:
 public class UsoTresEnRaya {
 	//Codigos de escape ANSI que representan diferentes colores, destacar que cada codigo tiene delante el codigo de reinicio '\u0001B[0m':
@@ -279,18 +281,18 @@ public class UsoTresEnRaya {
 		String cuerpo = "", cabeceraError = "";
 		int opc = -1;		//Variable opcion que guardara el valor de la opcion elegida.
 		String aux="";		//String auxiliar para leer los datos con el y luego castear a entero.
-		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"1"+BLANCO_BRILLANTE+") Jugador Vs Jugador.", 0)+"\r\n";
-		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"2"+BLANCO_BRILLANTE+") Jugador Vs IA.", 0)+"\r\n";
-		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"3"+BLANCO_BRILLANTE+") IA Vs Jugador.", 0)+"\r\n";
-		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"("+CYAN_BRILLANTE+"4"+BLANCO_BRILLANTE+") IA Vs IA.", 0)+"\r\n";
-		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, "    "+BLANCO_BRILLANTE+"("+ROJO_BRILLANTE+"0"+BLANCO_BRILLANTE+") Salir del juego.", 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc1.0")+CYAN_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc1.1")+BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc1.2"), 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc2.0")+CYAN_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc2.1")+BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc2.2"), 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc3.0")+CYAN_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc3.1")+BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc3.2"), 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc4.0")+CYAN_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc4.1")+BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc4.2"), 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc0.0")+ROJO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc0.1")+BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeOpc0.2"), 0)+"\r\n";
 		cuerpo+=  ("├"+separadorInterfaz+"┤\r\n│ "+BLANCO);
 		cabeceraError+=(NEGRO_BRILLANTE+"┌"+separadorInterfaz+"┐\r\n");
-		cabeceraError+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_SUBRAYADO_BRILLANTE+"Error, reintroduzca una opcion valida:", 0)+"\r\n";
+		cabeceraError+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_SUBRAYADO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.error.opcionNoValida"), 0)+"\r\n";
 		cabeceraError+=("├"+separadorInterfaz+"┤\r\n");
 		//Procesamos el texto a mostrar:
 		System.out.println(NEGRO_BRILLANTE+"┌"+separadorInterfaz+"┐");
-		System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Introduzca una de las siguientes opciones:", 0));
+		System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.menu.mensajeIntroducirDatos"), 0));
 		System.out.println("├"+separadorInterfaz+"┤");
 		//Con un bucle 'do While' controlamos la opcion elegida por el usuario:
 		do {
