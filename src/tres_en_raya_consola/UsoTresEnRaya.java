@@ -2,8 +2,6 @@ package tres_en_raya_consola;
 //Importamos los siguientes paquetes:
 import java.io.IOException;
 import java.util.Scanner;
-
-import Principal.Messages;
 //Clase principal:
 public class UsoTresEnRaya {
 	//Codigos de escape ANSI que representan diferentes colores, destacar que cada codigo tiene delante el codigo de reinicio '\u0001B[0m':
@@ -43,7 +41,7 @@ public class UsoTresEnRaya {
 			}
 			//Siempre que no sea la opcion '0', se mostrara el siguiente mensaje y se borrara la consola:
 			if(opc!=0) {
-				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Pulse enter para continuar ...", 0));
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.main.mensajeContinuar"), 0));
 				System.out.println("└"+separadorInterfaz+"┘");
 				in.nextLine();
 				borrarConsola();
@@ -57,7 +55,7 @@ public class UsoTresEnRaya {
 		//Mostramos un mensaje para que la IA 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
 			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-			System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"IA X moverá cuando pulse un enter:", 0));
+			System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcIA1vsIA2.mensaje.mueve.IAX"), 0));
 			System.out.println("└"+separadorInterfaz+"┘");
 			in.nextLine();
 			miJuego.setMueveOrdenador(1, 2);
@@ -66,19 +64,19 @@ public class UsoTresEnRaya {
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"La IA X ha ganado la partida.", 0));
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcIA1vsIA2.mensaje.gana.IAX"), 0));
 				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 			else if(!miJuego.getQuedanMovimientos()) {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Ni la IA PUEDE CONTRA LA IA.", 0));
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcIA1vsIA2.mensaje.empate"), 0));
 				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Sino, pasara a jugar la IA de las O:
 			else {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"IA O moverá cuando pulse un enter:", 0));
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcIA1vsIA2.mensaje.mueve.IAO"), 0));
 				System.out.println("└"+separadorInterfaz+"┘");
 				in.nextLine();
 				miJuego.setMueveOrdenador(2, 1);
@@ -87,13 +85,13 @@ public class UsoTresEnRaya {
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"La IA O ha ganado la partida.", 0));
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcIA1vsIA2.mensaje.gana.IAO"), 0));
 					System.out.println("├"+separadorInterfaz+"┤");
 				}
 				//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 				else if(!miJuego.getQuedanMovimientos()) {
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, Ni la IA PUEDE CONTRA LA IA.", 0));
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcIA1vsIA2.mensaje.empate"), 0));
 					System.out.println("├"+separadorInterfaz+"┤");
 				}
 			}
