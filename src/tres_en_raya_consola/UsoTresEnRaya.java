@@ -156,7 +156,7 @@ public class UsoTresEnRaya {
 		//Mostramos un mensaje para que el jugador 1 introduzca la posicion en la que desea colocar su ficha:
 		do {
 			System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-			System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Jugador X introduzca su posición por favor:", 0));
+			System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcP1vsIA2.mensaje.mueve.JX"), 0));
 			pos = recogerPosicion(in);
 			miJuego.setMueveJugador(pos, 1);
 			borrarConsola();
@@ -164,19 +164,19 @@ public class UsoTresEnRaya {
 			//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria del jugador X y si es asi mostramos un mensaje:
 			if(miJuego.getGanaJugador(1)) {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡FELICIDADES!! Jugador X, usted ganó la partida.", 0));
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcP1vsIA2.mensaje.gana.JX"), 0));
 				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 			else if(!miJuego.getQuedanMovimientos()) {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...", 0));
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcP1vsIA2.mensaje.empate"), 0));
 				System.out.println("├"+separadorInterfaz+"┤");
 			}
 			//Sino, pasara a jugar la IA de las O:
 			else {
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"IA O moverá cuando pulse un enter:", 0));
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcP1vsIA2.mensaje.mueve.IAO"), 0));
 				System.out.println("└"+separadorInterfaz+"┘");
 				in.nextLine();
 				miJuego.setMueveOrdenador(2, 1);
@@ -185,13 +185,13 @@ public class UsoTresEnRaya {
 				//Utilizamos el metodo "getGanaJugador" para comprobar si hay victoria de la IA O y si es asi mostramos un mensaje:
 				if(miJuego.getGanaJugador(2)) {
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"Has sido derrotado, la IA O te ha humillado...", 0));
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcP1vsIA2.mensaje.gana.IAO"), 0));
 					System.out.println("├"+separadorInterfaz+"┤");
 				}
 				//Comprobamos con el metodo "getQuedanMovimientos" del objeto "mijuego" si quedan movimientos y si no quedan mostramos mensaje de empate:
 				else if(!miJuego.getQuedanMovimientos()) {
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+"¡¡Se produjo un EMPATE!!, nadie gana contra esta IA...", 0));
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.opcP1vsIA2.mensaje.empate"), 0));
 					System.out.println("├"+separadorInterfaz+"┤");
 				}
 			}
@@ -260,12 +260,12 @@ public class UsoTresEnRaya {
 				pos = Integer.parseInt(aux.trim());
 				if(pos < 1 ||  pos > 9 || !(miJuego.getMovimientoValido(pos))) {	//Si 'pos' no esta en el valor indicado mostramos mensaje de error:
 					System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_BRILLANTE+"Error, introduce un valor válido por favor:", 0));
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.recogerPosicion.mensaje.error.valorNoValido"), 0));
 					System.out.print  ("├"+separadorInterfaz+"┤\n│ "+BLANCO);
 				}
 			}catch(NumberFormatException n) {	//Mostramos mensaje de error cuando se captura la excepcion:
 				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
-				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_BRILLANTE+"Error, introduce un valor válido por favor:", 0));
+				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_BRILLANTE+Messages.getString("UsoTresEnRaya.consola.recogerPosicion.mensaje.error.valorNoValido"), 0));
 				System.out.print  ("├"+separadorInterfaz+"┤\n│ "+BLANCO);
 			}
 		}while(pos < 1 || pos > 9 || !(miJuego.getMovimientoValido(pos)));
