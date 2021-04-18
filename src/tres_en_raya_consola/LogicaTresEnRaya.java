@@ -365,10 +365,10 @@ public class LogicaTresEnRaya {
 		//Variables que contendran las posiciones de las fichas del jugador que gana la partida:
 		int pos1 = 0, pos2 = 0, pos3 = 0;
 		//Definimos diferentes Arrays de String para dar forma a las figuras del juego:
-		String[] jugadorXGanador = {VERDE_BRILLANTE+"  ██  ██  ",VERDE_BRILLANTE+"    ██    ",VERDE_BRILLANTE+"  ██  ██  "};
-		String[] jugadorOGanador = {VERDE_BRILLANTE+"  ██████  ",VERDE_BRILLANTE+"  ██  ██  ",VERDE_BRILLANTE+"  ██████  "};
-		String[] jugadorX = {CYAN_BRILLANTE+"  ██  ██  ",CYAN_BRILLANTE+"    ██    ",CYAN_BRILLANTE+"  ██  ██  "};
-		String[] jugadorO = {ROJO_BRILLANTE+"  ██████  ",ROJO_BRILLANTE+"  ██  ██  ",ROJO_BRILLANTE+"  ██████  "};
+		String[] jugadorXGanador = {VERDE_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.o.1"),VERDE_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.x.1"),VERDE_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.o.1")};
+		String[] jugadorOGanador = {VERDE_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.o.2"),VERDE_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.x.2"),VERDE_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.o.2")};
+		String[] jugadorX = {CYAN_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.o.1"),CYAN_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.x.1"),CYAN_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.o.1")};
+		String[] jugadorO = {ROJO_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.o.2"),ROJO_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.x.2"),ROJO_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.forma.o.2")};
 		String[] vacio = {"          ","          ","          "};
 		String aux = "";
 		//Almacenamos las posiciones de las fichas del jugador que gana la partida para poder imprimir la combinacion ganadora:
@@ -394,20 +394,20 @@ public class LogicaTresEnRaya {
 		}
 		//Procesamos el tablero:
 		cuerpo+=calcularMensajesInterfaz(separadorInterfaz, AMARILLO_BRILLANTE+"TABLERO", 1)+"\r\n";
-		cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"┌────────────┬────────────┬────────────┐", 1)+"\r\n";
-		cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"│            │            │            │", 1)+"\r\n";
+		cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.inicio"), 1)+"\r\n";
+		cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.vacio"), 1)+"\r\n";
 		//Bucle for encargado de procesar parte del tablero, segun la informacion contenida actual:
 		for(i = 0, j = 0 ; i < 9 ; i++) {
 			if(i == 0 || i == 3 || i == 6) {
-				aux += BLANCO+"│ ";			//Procesamiento de los separadores laterales izquierdos de las casillas.
+				aux += BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.separador.lateralIzquierdo");			//Procesamiento de los separadores laterales izquierdos de las casillas.
 			}
 			if(tablero[i] == 0) {
 				aux += vacio[j];			//Si la casilla esta vacia, se procesa la figura vacia.
 				if(i == 2 || i == 5 || i == 8) {
-					aux += BLANCO+" │";		//Procesamiento de los separadores laterales derechos de las casillas.
+					aux += BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.separador.lateralDerecho");		//Procesamiento de los separadores laterales derechos de las casillas.
 				}
 				else {
-					aux += BLANCO+" │ ";	//Procesamiento de los separadores centrales de las casillas.
+					aux += BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.separador.central");	//Procesamiento de los separadores centrales de las casillas.
 				}
 			}
 			else if(tablero[i] == 1) {		//Si la casilla contiene una X, se procesa su figura, dependiendo de si ha ganado o no se utiliza una u otra.
@@ -418,10 +418,10 @@ public class LogicaTresEnRaya {
 					aux += jugadorX[j];
 				}
 				if(i == 2 || i == 5 || i == 8) {
-					aux += BLANCO+" │";		//Procesamiento de los separadores laterales derechos de las casillas.
+					aux += BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.separador.lateralDerecho");		//Procesamiento de los separadores laterales derechos de las casillas.
 				}
 				else {
-					aux += BLANCO+" │ ";	//Procesamiento de los separadores centrales de las casillas.
+					aux += BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.separador.central");	//Procesamiento de los separadores centrales de las casillas.
 				}
 			}
 			else if(tablero[i] == 2){		//Si la casilla contiene una O, se procesa su figura, dependiendo de si ha ganado o no se utiliza una u otra.
@@ -432,10 +432,10 @@ public class LogicaTresEnRaya {
 					aux += jugadorO[j];
 				}
 				if(i == 2 || i == 5 || i == 8) {
-					aux += BLANCO+" │";		//Procesamiento de los separadores laterales derechos de las casillas.
+					aux += BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.separador.lateralDerecho");		//Procesamiento de los separadores laterales derechos de las casillas.
 				}
 				else {
-					aux += BLANCO+" │ ";	//Procesamiento de los separadores centrales de las casillas.
+					aux += BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.separador.central");	//Procesamiento de los separadores centrales de las casillas.
 				}
 			}
 			if(i == 2 || i == 5 || i == 8) {	//Cuando se tenga esa linea concatenada la pasamos a procesar:
@@ -450,16 +450,16 @@ public class LogicaTresEnRaya {
 				}
 				//Si es la ultima linea antes de la siguiente casilla, se muestra en pequeño los numeros que hacen referencia a esa casilla:
 				else {
-					cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"│          " +AMARILLO_BRILLANTE+(i-1) + " "+BLANCO+"│          " +AMARILLO_BRILLANTE+ (i) + " "+BLANCO+"│          " +AMARILLO_BRILLANTE+(i+1) + " "+BLANCO+"│", 1)+"\r\n";
+					cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.datos.1") +AMARILLO_BRILLANTE+(i-1) + Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.datos.2")+BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.datos.3") +AMARILLO_BRILLANTE+ (i) + Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.datos.4")+BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.datos.5") +AMARILLO_BRILLANTE+(i+1) + Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.datos.6")+BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.datos.7"), 1)+"\r\n";
 					//Si no es la ultima linea divisoria se procesa la siguiente estructura:
 					if(i < 8) {
-						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"├────────────┼────────────┼────────────┤", 1)+"\r\n";
-						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"│            │            │            │", 1)+"\r\n";
+						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.medio"), 1)+"\r\n";
+						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.vacio"), 1)+"\r\n";
 					}
 					//Si es la ultima linea divisoria se procesa la siguiente estructura:
 					else {
-						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+"└────────────┴────────────┴────────────┘", 1)+"\r\n";
-						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, AMARILLO_BRILLANTE+"Turno: "+turno, 1)+"\r\n";
+						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, BLANCO+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.bloque.fin"), 1)+"\r\n";
+						cuerpo+=calcularMensajesInterfaz(separadorInterfaz, AMARILLO_BRILLANTE+Messages.getString("LogicaTresEnRaya.consola.getDibujaTablero.dibujo.mensaje.turno")+turno, 1)+"\r\n";
 					}
 					//Reiniciamos valores:
 					j = 0;
