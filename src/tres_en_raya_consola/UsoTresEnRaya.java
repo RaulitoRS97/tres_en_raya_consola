@@ -271,7 +271,7 @@ public class UsoTresEnRaya {
 				System.out.print  ("├"+separadorInterfaz+"┤\n│ "+BLANCO);
 			}
 		}while(pos < 1 || pos > 9 || !(miJuego.getMovimientoValido(pos)));
-		System.out.println("└"+separadorInterfaz+"┘");
+		System.out.println(NEGRO_BRILLANTE+"└"+separadorInterfaz+"┘");
 		//Retornamos la posicion:
 		return pos;
 	}
