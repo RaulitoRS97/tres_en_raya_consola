@@ -2,6 +2,7 @@ package tres_en_raya_consola;
 //Importamos los siguientes paquetes:
 import java.io.IOException;
 import java.util.Scanner;
+
 //Clase principal:
 public class UsoTresEnRaya {
 	//Codigos de escape ANSI que representan diferentes colores, destacar que cada codigo tiene delante el codigo de reinicio '\u0001B[0m':
@@ -41,6 +42,28 @@ public class UsoTresEnRaya {
 			else if(opc == 4) {
 				opcIA1vsIA2(in);
 			}
+			//La opcion 5 del menu es para cambiar de idioma:
+			else if(opc==5) {	//Pasamos a llevar al submenu de idiomas para realizar un cambio de idioma.
+				int opc2;	//Variable que contendra la opcion elegida por el usuario referente al menu.
+				System.out.println(NEGRO_BRILLANTE+"┌"+separadorInterfaz+"┐");
+				opc2=menuIdiomas(in);	//Obtenemos la opcion elegida por el usuario.
+				System.out.println(NEGRO_BRILLANTE+"├"+separadorInterfaz+"┤");
+				if(opc2==1) {
+					//Cambio y mensaje Español
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.main.opc11.idiomaElegido.Español"), 0));
+					idioma="ES.";
+				}else if(opc2==2) {
+					//Cambio y mensaje Ingles
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.main.opc11.idiomaElegido.Ingles"), 0));
+					idioma="EN.";
+				}
+				if(opc2!=0) {
+					System.out.println("├"+separadorInterfaz+"┤");
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.main.mensajePausa"), 0));
+					System.out.println("└"+separadorInterfaz+"┘");in.nextLine();
+				}
+				borrarConsola();
+			}
 			//Siempre que no sea la opcion '0', se mostrara el siguiente mensaje y se borrara la consola:
 			if(opc!=0) {
 				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.main.mensajeContinuar"), 0));
@@ -49,6 +72,41 @@ public class UsoTresEnRaya {
 				borrarConsola();
 			}
 		}while(opc!=0);
+	}
+	//Metodo estatico que mostrara un menu para recoger y devolver la opcion elegida por el usuario:
+	//Recibe como parametros un escaner, un booleano indicando si se debe dibujar union o no, y el separador de interfaz que se utilizara.
+	static int menuIdiomas(Scanner in) {
+		//Strings para guardar el texto procesado a mostrar e imprimirlo del tiron y asi que no se vea el cursor moverse como locooo:
+		String cuerpo = "", cabeceraError = "";
+		int opc = -1;		//Variable opcion que guardara el valor de la opcion elegida.
+		String aux="";		//String auxiliar para leer los datos con el y luego castear a entero.
+		//Procesamos el texto a mostrar:
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc1.0")+CYAN_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc1.1")+BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc1.2"), 0)+"\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc2.0")+CYAN_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc2.1")+BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc2.2"), 0)+"\r\n";
+		cuerpo+="├"+separadorInterfaz+"┤\r\n";
+		cuerpo+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc0.0")+ROJO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc0.1")+BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeOpc0.2"), 0)+"\r\n";
+		cuerpo+= ("├"+separadorInterfaz+"┤\r\n│ "+BLANCO);
+		cabeceraError+=(NEGRO_BRILLANTE+"┌"+separadorInterfaz+"┐\r\n");
+		cabeceraError+=LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, ROJO_SUBRAYADO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.error.opcionNoValida"), 0)+"\r\n";
+		cabeceraError+=("├"+separadorInterfaz+"┤\r\n");
+		System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.menuIdiomas.mensajeIntroducirDatos"), 0));
+		System.out.println("├"+separadorInterfaz+"┤");
+		//Controlamos la opcion elegida por el usuario:
+		do {
+			System.out.print(cuerpo);
+			aux=in.nextLine();	//La primera vez leemos en 'aux'.
+			try {	//Intentamos castear a 'aux' a entero, y si no lo conseguimos controlamos la excepcion:
+				opc=Integer.parseInt(aux.trim());
+				if(opc<0||opc>2) {	//Si 'opc' no esta en el valor indicado mostramos mensaje de error:
+					borrarConsola();
+					System.out.print(cabeceraError);
+				}
+			}catch(NumberFormatException n) {	//Mostramos mensaje de error cuando se captura la excepcion:
+				borrarConsola();
+				System.out.print(cabeceraError);
+			}
+		}while(opc<0||opc>2);
+		return opc;	//Devolvemos el valor de 'opc'.
 	}
 	//Metodo estatico que ejecutara la opcion numero 4 del menu, es decir IA X vs IA O:
 	public static void opcIA1vsIA2(Scanner in) {
