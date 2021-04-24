@@ -59,13 +59,13 @@ public class UsoTresEnRaya {
 				}
 				if(opc2!=0) {
 					System.out.println("├"+separadorInterfaz+"┤");
-					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.main.mensajePausa"), 0));
+					System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.main.mensajeContinuar"), 0));
 					System.out.println("└"+separadorInterfaz+"┘");in.nextLine();
 				}
 				borrarConsola();
 			}
 			//Siempre que no sea la opcion '0', se mostrara el siguiente mensaje y se borrara la consola:
-			if(opc!=0) {
+			if(opc!=0&&opc!=5) {
 				System.out.println(LogicaTresEnRaya.calcularMensajesInterfaz(separadorInterfaz, BLANCO_BRILLANTE+Messages.getString(idioma+"UsoTresEnRaya.consola.main.mensajeContinuar"), 0));
 				System.out.println("└"+separadorInterfaz+"┘");
 				in.nextLine();
